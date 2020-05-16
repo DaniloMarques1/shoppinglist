@@ -1,6 +1,8 @@
 import {CREATE_LIST, ADD_ITEM, REMOVE_ITEM} from './actions';
 
 const initialState = {
+  total: 0,
+  prevision: 0,
   aliment: {
     items: [],
     qtd: 0,
@@ -43,7 +45,7 @@ let id = 0;
 export default function reducer(state = initialState, action) {
   switch(action.type) {
     case CREATE_LIST: {
-      return initialState;
+      return {...state, prevision: action.prevision};
     }
     case ADD_ITEM: {
       const {category} = action;

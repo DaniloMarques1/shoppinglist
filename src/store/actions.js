@@ -2,9 +2,10 @@ export const CREATE_LIST = "CREATE_LIST";
 export const ADD_ITEM = "ADD_ITEM";
 export const REMOVE_ITEM = "REMOVE_ITEM";
 
-export function createList() {
+export function createList(prevision) {
   return {
-    type: CREATE_LIST
+    type: CREATE_LIST,
+    prevision
   }
 }
 

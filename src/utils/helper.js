@@ -6,7 +6,7 @@ export default class Helper {
    */
   static formatCurrency(value, type) {
     //TODO: lazy solution because javascript sucks
-    const roundedValue = value.toFixed(2);
+    const roundedValue = parseFloat(value).toFixed(2);
     return `R$ ${roundedValue}`;
   }
 }
