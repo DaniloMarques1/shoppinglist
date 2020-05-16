@@ -1,4 +1,4 @@
-import {ADD_ITEM, REMOVE_ITEM} from './actions';
+import {CREATE_LIST, ADD_ITEM, REMOVE_ITEM} from './actions';
 
 const initialState = {
   aliment: {
@@ -42,6 +42,9 @@ const initialState = {
 let id = 0;
 export default function reducer(state = initialState, action) {
   switch(action.type) {
+    case CREATE_LIST: {
+      return initialState;
+    }
     case ADD_ITEM: {
       const {category} = action;
       const nTotal = state[category].total + (item.price * item.qtd);

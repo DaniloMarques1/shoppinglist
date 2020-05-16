@@ -1,5 +1,12 @@
+export const CREATE_LIST = "CREATE_LIST";
 export const ADD_ITEM = "ADD_ITEM";
 export const REMOVE_ITEM = "REMOVE_ITEM";
+
+export function createList() {
+  return {
+    type: CREATE_LIST
+  }
+}
 
 export function addItem(item, category) {
   return {

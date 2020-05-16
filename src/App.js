@@ -1,16 +1,15 @@
 import React from 'react';
 
-import {View} from 'react-native';
-import {colors} from './utils/colors';
-import Button from './components/Button';
+import {Provider} from 'react-redux';
+import store from './store';
+
+import Route from './routes';
 
 function App() {
   return (
-    <View>
-      <Button text="Salvar" color={colors.primaryBlue} icon="send" />
-      <Button text="Apagar" color={colors.primaryRed} icon="delete" />
-      <Button text="Editar" color={colors.primaryBlue} icon="edit" />
-    </View>
+    <Provider store={store}>
+      <Route />
+    </Provider>
   );
 };
 
