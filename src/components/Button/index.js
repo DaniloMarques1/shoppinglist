@@ -8,11 +8,10 @@ import {ButtonContainer, ButtonText, IconView} from './styles';
  * text - string of the button
  * icon - string icon name
  */
-function Button({text, icon, color}) {
-  console.log(color);
+function Button({onPress, text, icon, color}) {
   return (
     <>
-      <ButtonContainer color={color}>
+      <ButtonContainer onPress={onPress} color={color}>
         <IconView>
           {icon && (
             <Icon size={16} name={icon} color="#fff" />
