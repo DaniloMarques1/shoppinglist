@@ -14,10 +14,10 @@ export const ButtonText = styled.Text`
   color: ${colors.primaryWhite};
   text-align: center;
   font-size: 16px;
-  margin-left: 5px;
 `;
 
 export const IconView = styled.View`
   margin-top: 3px;
+  margin-right: 7px;
 `;
 

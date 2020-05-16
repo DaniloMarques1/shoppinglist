@@ -12,11 +12,11 @@ function Button({onPress, text, icon, color}) {
   return (
     <>
       <ButtonContainer onPress={onPress} color={color}>
-        <IconView>
-          {icon && (
-            <Icon size={16} name={icon} color="#fff" />
-          )}
-        </IconView>
+       {icon && (
+          <IconView>
+              <Icon size={16} name={icon} color="#fff" />
+          </IconView>
+       )}
         <ButtonText>
           {text}
         </ButtonText>
