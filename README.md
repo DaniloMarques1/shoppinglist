@@ -15,3 +15,25 @@ Separação dos itens por categorias, por exemplo quando adicionado um novo prod
 4. Bebida - Regrigerante, suco...
 5. Alimento - Açucar, Arroz...
 6. Congelados - Pizza, Mortadela, queijo...
+7. Tempero - curry
+
+## Estruturação do(s) item(s)
+
+Add a new item: {name: "Sabão", price: 2.34, qtd: 10}
+Add a new item: {name: "Galinha", price: 8, qtd: 15}
+Add a new item: {name: "Hamburguer", price: 2.34, qtd: 15}
+
+const items = {
+  cleaning: [{name: "Sabão", price: 2.34, qtd: 10}],
+  dessert: [],
+  drink: [],
+  aliment: [],
+  beef: [{name: "Galinha", price: 8, qtd: 15}, {name: "Hamburguer", price: 2.34, qtd: 15}],
+  frozen: [],
+  flavoring: []
+}
+
+const cleaning = {items: [{id: 1, name: "Sabão", price: 2.34, qtd: 10}], qtd: 10, total: 23.4}
+const dessert = {items: [], qtd: 0, total: 0}
+const drink = {items: [], qtd: 0, total: 0}
+
