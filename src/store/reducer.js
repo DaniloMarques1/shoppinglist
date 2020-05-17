@@ -41,7 +41,6 @@ const initialState = {
 }
 
 // usado nos itens
-let id = 0;
 export default function reducer(state = initialState, action) {
   switch(action.type) {
     case CREATE_LIST: {
@@ -55,7 +54,7 @@ export default function reducer(state = initialState, action) {
       const itemTotal = (action.item.price * action.item.qtd);
       const nCategoryTotal = state[category].total + itemTotal;
       const nTotal = state.total + itemTotal;
-      action.item.id = ++id;
+      action.item.id = state[category].items.length + 1;
       return {...state, total: nTotal, [category]: {
           items: [...state[category].items, action.item],
           total: nCategoryTotal,
