@@ -13,6 +13,10 @@ export const TextDescription = styled.Text`
   margin-bottom: 50px;
 `;
 
+export const ButtonContainer = styled.View`
+  margin: 10px 0;
+`;
+
 export const ModalContainer = styled.View`
   justify-content: center;
   background-color: ${colors.primaryWhite};
@@ -30,5 +34,5 @@ export const Label = styled.Text`
 `;
 
 export const ViewButton = styled.View`
-  margin-top: 30px;
+  margin-top: 20px;
 `;

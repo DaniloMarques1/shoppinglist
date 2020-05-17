@@ -1,4 +1,4 @@
-import {CREATE_LIST, ADD_ITEM, REMOVE_ITEM} from './actions';
+import {CREATE_LIST, ADD_ITEM, REMOVE_ITEM, RECOVERY_LIST} from './actions';
 
 const initialState = {
   total: 0,
@@ -46,6 +46,9 @@ export default function reducer(state = initialState, action) {
   switch(action.type) {
     case CREATE_LIST: {
       return {...state, prevision: action.prevision};
+    }
+    case RECOVERY_LIST: {
+      return action.state;
     }
     case ADD_ITEM: {
       const {category} = action;
