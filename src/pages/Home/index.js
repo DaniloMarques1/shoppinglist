@@ -33,13 +33,13 @@ function Home({navigation}) {
   const handleNavigation = () => {
     setOpen(false);
     dispatch(createList(prevision));
-    navigation.navigate("ListItems");
+    navigation.navigate("ListCategories");
   }
 
   const handleRecovery = async () => {
     //TODO: Dispatch recovery
     dispatch(recoveryList(recovery));
-    navigation.navigate("ListItems");
+    navigation.navigate("ListCategories");
   }
 
   return (

@@ -3,8 +3,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Home from './pages/Home';
-import ListItems from './pages/ListItems';
+import ListCategories from './pages/ListCategories';
 import AddItem from './pages/AddItem';
+import ListItems from './pages/ListItems';
 import {colors} from './utils/colors'
 
 const Stack = createStackNavigator();
@@ -26,14 +27,19 @@ export default function Route() {
           component={Home}
         />
         <Stack.Screen
-          name="ListItems"
-          component={ListItems}
-          options={{title:"Lista de compras"}}
+          name="ListCategories"
+          component={ListCategories}
+          options={{title:"Lista de categorias"}}
         />
         <Stack.Screen
           name="AddItem"
           component={AddItem}
           options={{title:"Adicionar item"}}
+        />
+        <Stack.Screen
+          name="ListItems"
+          component={ListItems}
+          options={{title:"Itens"}}
         />
       </Stack.Navigator>
     </NavigationContainer>

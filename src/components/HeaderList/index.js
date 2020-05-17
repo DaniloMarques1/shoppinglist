@@ -1,14 +1,37 @@
 import React from 'react';
 
-import {Container, HeaderRightText, HeaderLeftText} from './styles';
+import {
+  HeaderContainer,
+  CategoryText,
+  ContainerRow,
+  QtdView,
+  QtdText,
+  TotalText,
+  TotalView,
+  Button
+} from './styles';
+import Helper from '../../utils/helper';
 
-function ItemHeader({rightText, leftText}) {
+function HeaderList({category, qtd, total, onPress}) {
   return (
-    <Container>
-      <HeaderRightText>{rightText}</HeaderRightText>
-      <HeaderLeftText>{leftText}</HeaderLeftText>
-    </Container>
+    <Button onPress={onPress}>
+      <HeaderContainer>
+        <CategoryText>{category}</CategoryText>
+        <ContainerRow>
+          <QtdView>
+            <QtdText>
+              QTD: {qtd}
+            </QtdText>
+          </QtdView>
+          <TotalView>
+            <TotalText>
+              Total: {Helper.formatCurrency(total)}
+            </TotalText>
+          </TotalView>
+        </ContainerRow>
+      </HeaderContainer>
+    </Button>
   );
 }
 
-export default ItemHeader;
+export default HeaderList;

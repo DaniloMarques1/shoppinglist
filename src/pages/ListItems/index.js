@@ -1,73 +1,50 @@
 import React from 'react';
 
-import {HeaderContainer, Container, ButtonsContainer, ButtonIcon} from './styles';
-import HeaderList from '../../components/HeaderList';
-import Helper from '../../utils/helper';
-import {useSelector} from 'react-redux';
+import {Container, ButtonsContainer, ButtonIcon, HeaderContainer, List} from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {colors} from '../../utils/colors';
-import AsyncStorage from '@react-native-community/async-storage';
+import Header from '../../components/Header';
+import ItemCard from '../../components/ItemCard';
+import Helper from '../../utils/helper';
+import {useSelector} from 'react-redux';
 
-function ListItems({navigation}) {
-  const {
-    aliment,
-    beef,
-    frozen,
-    drink,
-    flavoring,
-    cleaning,
-    dessert,
-    total,
-    prevision
-  } = useSelector(store => store);
+function ListItems({navigation, route}) {
+  const category = route.params?.category;
+  const item = useSelector(store => store[category]);
 
-  async function saveList() {
-    const jsonString = JSON.stringify({
-      aliment,
-      beef,
-      frozen,
-      drink,
-      flavoring,
-      dessert,
-      cleaning,
-      total,
-      prevision
-    });
+  console.log({item, category});
 
-    try {
-      await AsyncStorage.setItem("shoppinglist", jsonString);
-      console.log("Salvo com sucesso!!!");
-    }catch(e){
-      console.log(e);
-    }
-  }
+  const formatTotal = `Previsão: ${Helper.formatCurrency(item.total)}`;
+  const formatQtd   = `Qtd: ${item.qtd}`;
 
   function handleGoAddItem() {
     navigation.navigate("AddItem");
   }
 
-  const formatPrevision = `Previsão: ${Helper.formatCurrency(prevision)}`;
-  const formatTotal = `Total: ${Helper.formatCurrency(total)}`;
-
   return (
-    <>
+    <Container>
       <HeaderContainer>
-        <HeaderList
-          rightText={formatPrevision}
+        <Header
+          rightText={formatQtd}
           leftText={formatTotal}
         />
       </HeaderContainer>
-      <Container>
-        <ButtonsContainer>
+      <ButtonsContainer>
           <ButtonIcon onPress={handleGoAddItem}>
             <Icon color={colors.primaryBlue} name="add-shopping-cart" size={26} />
           </ButtonIcon>
           <ButtonIcon onPress={() => saveList()}>
             <Icon color={colors.primaryBlue} name="save" size={23} />
           </ButtonIcon>
-        </ButtonsContainer>
-      </Container>
-    </>
+      </ButtonsContainer>
+      <List
+        data={item.items}
+        keyExtractor={item => String(item.id)}
+        renderItem={({item}) => (
+          <ItemCard item={item} />
+        )}
+      />
+    </Container>
   );
 }
 

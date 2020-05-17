@@ -1,0 +1,108 @@
+import React from 'react';
+
+import {HeaderContainer, Container} from './styles';
+import Header from '../../components/Header';
+import Helper from '../../utils/helper';
+import {useSelector} from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
+import HeaderList from '../../components/HeaderList';
+
+function ListCategories({navigation}) {
+  const {
+    aliment,
+    beef,
+    frozen,
+    drink,
+    flavoring,
+    cleaning,
+    dessert,
+    total,
+    prevision
+  } = useSelector(store => store);
+
+  async function saveList() {
+    const jsonString = JSON.stringify({
+      aliment,
+      beef,
+      frozen,
+      drink,
+      flavoring,
+      dessert,
+      cleaning,
+      total,
+      prevision
+    });
+
+    try {
+      await AsyncStorage.setItem("shoppinglist", jsonString);
+    }catch(e){
+      console.log(e);
+    }
+  }
+
+  
+
+  function handleGoItem(category) {
+    navigation.navigate("ListItems", {category: category});
+  }
+
+  const formatPrevision = `Previsão: ${Helper.formatCurrency(prevision)}`;
+  const formatTotal = `Total: ${Helper.formatCurrency(total)}`;
+
+  return (
+    <>
+      <HeaderContainer>
+        <Header
+          rightText={formatPrevision}
+          leftText={formatTotal}
+        />
+      </HeaderContainer>
+      <Container>
+               <HeaderList
+          category="Alimento"
+          qtd={aliment.qtd}
+          onPress={() => handleGoItem("aliment")}
+          total={aliment.total}
+        />
+       <HeaderList
+          category="Bebida"
+          qtd={drink.qtd}
+          onPress={() => handleGoItem("drink")}
+          total={drink.total}
+        />
+        <HeaderList
+          category="Limpeza"
+          qtd={cleaning.qtd}
+          onPress={() => handleGoItem("cleaning")}
+          total={cleaning.total}
+        />
+        <HeaderList
+          category="Carne"
+          qtd={beef.qtd}
+          onPress={() => handleGoItem("beef")}
+          total={beef.total}
+        />
+        <HeaderList
+          category="Tempero"
+          qtd={flavoring.qtd}
+          onPress={() => handleGoItem("flavoring")}
+          total={flavoring.total}
+        />
+        <HeaderList
+          category="Congelados"
+          qtd={frozen.qtd}
+          onPress={() => handleGoItem("frozen")}
+          total={frozen.total}
+        />
+        <HeaderList
+          category="Sobremesa"
+          qtd={dessert.qtd}
+          onPress={() => handleGoItem("dessert")}
+          total={dessert.total}
+        />
+     </Container>
+    </>
+  );
+}
+
+export default ListCategories;
