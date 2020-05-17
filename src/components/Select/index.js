@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import {Picker} from '@react-native-community/picker';
 import Category from '../../utils/category';
@@ -10,6 +10,7 @@ function Select({selectedValue, onChange}) {
         selectedValue={selectedValue}
         onValueChange={(itemValue) => onChange(itemValue)}
       >
+        <Picker.Item label="SELECIONE UMA CATEGORIA" value="" />
         <Picker.Item label={Category.BEEF} value="beef" />
         <Picker.Item label={Category.CLEANING} value="cleaning" />
         <Picker.Item label={Category.ALIMENT} value="aliment" />

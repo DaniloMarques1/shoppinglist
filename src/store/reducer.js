@@ -52,12 +52,14 @@ export default function reducer(state = initialState, action) {
     }
     case ADD_ITEM: {
       const {category} = action;
-      const nTotal = state[category].total + (item.price * item.qtd);
-      item.id = ++id;
-      return {...state, [category]: {
-          items: [...state[category].items, item],
-          total: nTotal,
-          qtd: state[category].qtd + item.qtd
+      const itemTotal = (action.item.price * action.item.qtd);
+      const nCategoryTotal = state[category].total + itemTotal;
+      const nTotal = state.total + itemTotal;
+      action.item.id = ++id;
+      return {...state, total: nTotal, [category]: {
+          items: [...state[category].items, action.item],
+          total: nCategoryTotal,
+          qtd: state[category].qtd + action.item.qtd
         }
       };
     }

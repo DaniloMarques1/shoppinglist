@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {colors} from '../../utils/colors';
 import AsyncStorage from '@react-native-community/async-storage';
 
-function ListItems() {
+function ListItems({navigation}) {
   const {
     aliment,
     beef,
@@ -20,7 +20,7 @@ function ListItems() {
     total,
     prevision
   } = useSelector(store => store);
-  
+
   async function saveList() {
     const jsonString = JSON.stringify({
       aliment,
@@ -42,6 +42,10 @@ function ListItems() {
     }
   }
 
+  function handleGoAddItem() {
+    navigation.navigate("AddItem");
+  }
+
   const formatPrevision = `Previsão: ${Helper.formatCurrency(prevision)}`;
   const formatTotal = `Total: ${Helper.formatCurrency(total)}`;
 
@@ -55,7 +59,7 @@ function ListItems() {
       </HeaderContainer>
       <Container>
         <ButtonsContainer>
-          <ButtonIcon>
+          <ButtonIcon onPress={handleGoAddItem}>
             <Icon color={colors.primaryBlue} name="add-shopping-cart" size={26} />
           </ButtonIcon>
           <ButtonIcon onPress={() => saveList()}>

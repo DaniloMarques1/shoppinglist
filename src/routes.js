@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Home from './pages/Home';
 import ListItems from './pages/ListItems';
+import AddItem from './pages/AddItem';
 import {colors} from './utils/colors'
 
 const Stack = createStackNavigator();
@@ -28,6 +29,11 @@ export default function Route() {
           name="ListItems"
           component={ListItems}
           options={{title:"Lista de compras"}}
+        />
+        <Stack.Screen
+          name="AddItem"
+          component={AddItem}
+          options={{title:"Adicionar item"}}
         />
       </Stack.Navigator>
     </NavigationContainer>
