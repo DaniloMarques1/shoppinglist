@@ -1,11 +1,13 @@
 import React from 'react';
 
-import {HeaderContainer, Container} from './styles';
+import {HeaderContainer, Container, ButtonsContainer, ButtonIcon} from './styles';
 import Header from '../../components/Header';
 import Helper from '../../utils/helper';
 import {useSelector} from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 import HeaderList from '../../components/HeaderList';
+import {colors} from '../../utils/colors';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 function ListCategories({navigation}) {
   const {
@@ -51,14 +53,20 @@ function ListCategories({navigation}) {
 
   return (
     <>
-      <HeaderContainer>
+     <HeaderContainer>
         <Header
           rightText={formatPrevision}
           leftText={formatTotal}
         />
+        <ButtonsContainer>
+          <ButtonIcon onPress={() => saveList()}>
+            <Icon color={colors.primaryBlue} name="save" size={23} />
+          </ButtonIcon>
+        </ButtonsContainer>
+
       </HeaderContainer>
       <Container>
-               <HeaderList
+        <HeaderList
           category="Alimento"
           qtd={aliment.qtd}
           onPress={() => handleGoItem("aliment")}
