@@ -1,4 +1,10 @@
-import {CREATE_LIST, ADD_ITEM, REMOVE_ITEM, RECOVERY_LIST} from './actions';
+import {
+  CREATE_LIST,
+  ADD_ITEM,
+  REMOVE_ITEM,
+  RECOVERY_LIST,
+  UPDATE_ITEM 
+} from './actions';
 
 const initialState = {
   total: 0,
@@ -64,11 +70,36 @@ export default function reducer(state = initialState, action) {
     }
     case REMOVE_ITEM: {
       const {category} = action;
-      const nTotal = state[category].total - (action.item.price * action.item.qtd);
+      const itemTotal = (action.item.price * action.item.qtd);
+      const nCategoryTotal = state[category].total - itemTotal;
+      const nTotal = state.total - itemTotal;
       const nQtd = state[category].qtd - action.item.qtd;
       const nItems = state[category].items.filter(item => item.id !== action.item.id);
 
-      return {...state, [category]: { items: nItems, qtd: nQtd, total: nTotal}}
+      return {...state, [category]: { items: nItems, qtd: nQtd, total: nCategoryTotal}, total: nTotal}
+    }
+    case UPDATE_ITEM: {
+      // TODO: Bug na nova qtd, caso antes tivesse 4 e eu atualizar para 3 ele vai soamr 4 + 3
+      console.log(action);
+      const {category} = action;
+      const itemTotal = (action.item.price * action.item.qtd);
+      const nCategoryTotal = state[category].total + itemTotal;
+      const nTotal = state.total + itemTotal;
+      return {
+        ...state, total: nTotal, 
+        [category]: {
+          items: state[category].items.map(item => {
+            if (item.id !== action.item.id) {
+              console.log("Item: ", item);
+              return item;
+            }
+            
+            return action.item;
+          }),
+          total: nCategoryTotal,
+          qtd: state[category].qtd + action.item.qtd
+        }
+      }
     }
     default:
       return state;

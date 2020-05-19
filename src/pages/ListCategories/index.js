@@ -9,6 +9,7 @@ import HeaderList from '../../components/HeaderList';
 import {colors} from '../../utils/colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+//TODO: this is better for the eyes?
 function ListCategories({navigation}) {
   const {
     aliment,
@@ -41,8 +42,6 @@ function ListCategories({navigation}) {
       console.log(e);
     }
   }
-
-  
 
   function handleGoItem(category) {
     navigation.navigate("ListItems", {category: category});

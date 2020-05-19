@@ -21,6 +21,12 @@ function ListItems({navigation, route}) {
     navigation.navigate("AddItem");
   }
 
+  function handleEditItem(item) {
+    console.log(item);
+    console.log(category);
+    navigation.navigate("UpdateItem" , {category, item});
+  }
+
   return (
     <Container>
       <HeaderContainer>
@@ -30,18 +36,15 @@ function ListItems({navigation, route}) {
         />
       </HeaderContainer>
       <ButtonsContainer>
-          <ButtonIcon onPress={handleGoAddItem}>
+        <ButtonIcon onPress={handleGoAddItem}>
             <Icon color={colors.primaryBlue} name="add-shopping-cart" size={26} />
-          </ButtonIcon>
-          <ButtonIcon onPress={() => saveList()}>
-            <Icon color={colors.primaryBlue} name="save" size={23} />
-          </ButtonIcon>
+        </ButtonIcon>
       </ButtonsContainer>
       <List
         data={item.items}
         keyExtractor={item => String(item.id)}
         renderItem={({item}) => (
-          <ItemCard item={item} />
+          <ItemCard item={item} onPress={() => handleEditItem(item)} />
         )}
       />
     </Container>

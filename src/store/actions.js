@@ -34,8 +34,10 @@ export function removeItem(item, category) {
   }
 }
 
-export function updateItem() {
+export function updateItem(item, category) {
   return {
-
+    type: UPDATE_ITEM,
+    category,
+    item
   }
 }

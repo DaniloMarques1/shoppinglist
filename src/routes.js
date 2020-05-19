@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import ListCategories from './pages/ListCategories';
 import AddItem from './pages/AddItem';
 import ListItems from './pages/ListItems';
+import UpdateItem from './pages/UpdateItem';
 import {colors} from './utils/colors'
 
 const Stack = createStackNavigator();
@@ -40,6 +41,11 @@ export default function Route() {
           name="ListItems"
           component={ListItems}
           options={{title:"Itens"}}
+        />
+        <Stack.Screen
+          name="UpdateItem"
+          component={UpdateItem}
+          options={{title:"Atualizar item"}}
         />
       </Stack.Navigator>
     </NavigationContainer>

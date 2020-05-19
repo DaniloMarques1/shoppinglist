@@ -33,7 +33,10 @@ const items = {
   flavoring: []
 }
 
-const cleaning = {items: [{id: 1, name: "Sabão", price: 2.34, qtd: 10}], qtd: 10, total: 23.4}
-const dessert = {items: [], qtd: 0, total: 0}
-const drink = {items: [], qtd: 0, total: 0}
+### TODO
 
+* [ ] Botão de adicionar deve ficar na tela de categorias
+* [ ] Lidar com inputs inválidos ao adicionar um item, atualizar ou quando estiver criando a previsão
+* [ ] Funcionalidade de atualiazar (esta bugada)
+* [ ] Funcionalidade de remover (esta bugada)
+* [ ] Atualizar os formularios para usar o react-hook-form para validação

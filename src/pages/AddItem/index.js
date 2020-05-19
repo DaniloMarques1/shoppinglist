@@ -26,7 +26,7 @@ function AddItem({navigation}) {
   const [category, setCategory] = useState("");
 
   function handleAddItem() {
-    //TODO: Deal if we left some inputs blank
+    // TODO: Deal if we left some inputs blank
     const item = {
       name: itemName,
       price: parseFloat(itemPrice),
@@ -39,7 +39,7 @@ function AddItem({navigation}) {
 
   return (
     <Container>
-      <Title> Informe is dados do novo item</Title>
+      <Title>Informe os dados do novo item</Title>
       <Label>Digite o nome do produto: </Label>
       <Input
         placeholder="Ex: café"
