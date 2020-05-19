@@ -1,6 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
-import {Container, ButtonsContainer, ButtonIcon, HeaderContainer, List} from './styles';
+import {
+  Container,
+  ButtonsContainer,
+  ButtonIcon,
+  HeaderContainer,
+  List
+} from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {colors} from '../../utils/colors';
 import Header from '../../components/Header';
@@ -12,10 +18,8 @@ function ListItems({navigation, route}) {
   const category = route.params?.category;
   const item = useSelector(store => store[category]);
 
-  console.log({item, category});
-
-  const formatTotal = `Previsão: ${Helper.formatCurrency(item.total)}`;
   const formatQtd   = `Qtd: ${item.qtd}`;
+  const formatTotal = `Total: ${Helper.formatCurrency(item.total)}`;
 
   function handleGoAddItem() {
     navigation.navigate("AddItem");

@@ -40,7 +40,7 @@ export default function Route() {
         <Stack.Screen
           name="ListItems"
           component={ListItems}
-          options={{title:"Itens"}}
+          options={({route}) => ({title: route.params.name})}
         />
         <Stack.Screen
           name="UpdateItem"

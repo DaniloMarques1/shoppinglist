@@ -44,7 +44,7 @@ function ListCategories({navigation}) {
   }
 
   function handleGoItem(category) {
-    navigation.navigate("ListItems", {category: category});
+    navigation.navigate("ListItems", {category: category, name: Helper.translteTitle(category)});
   }
 
   const formatPrevision = `Previsão: ${Helper.formatCurrency(prevision)}`;
