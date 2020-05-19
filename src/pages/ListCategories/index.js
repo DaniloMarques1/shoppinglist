@@ -1,6 +1,12 @@
 import React from 'react';
 
-import {HeaderContainer, Container, ButtonsContainer, ButtonIcon} from './styles';
+import {
+  HeaderContainer,
+  Container,
+  ButtonsContainer,
+  ButtonIcon
+} from './styles';
+
 import Header from '../../components/Header';
 import Helper from '../../utils/helper';
 import {useSelector} from 'react-redux';
@@ -83,22 +89,10 @@ function ListCategories({navigation}) {
           total={drink.total}
         />
         <HeaderList
-          category="Limpeza"
-          qtd={cleaning.qtd}
-          onPress={() => handleGoListItem("cleaning")}
-          total={cleaning.total}
-        />
-        <HeaderList
           category="Carne"
           qtd={beef.qtd}
           onPress={() => handleGoListItem("beef")}
           total={beef.total}
-        />
-        <HeaderList
-          category="Tempero"
-          qtd={flavoring.qtd}
-          onPress={() => handleGoListItem("flavoring")}
-          total={flavoring.total}
         />
         <HeaderList
           category="Congelados"
@@ -107,10 +101,22 @@ function ListCategories({navigation}) {
           total={frozen.total}
         />
         <HeaderList
+          category="Limpeza"
+          qtd={cleaning.qtd}
+          onPress={() => handleGoListItem("cleaning")}
+          total={cleaning.total}
+        />
+        <HeaderList
           category="Sobremesa"
           qtd={dessert.qtd}
           onPress={() => handleGoListItem("dessert")}
           total={dessert.total}
+        />
+        <HeaderList
+          category="Tempero"
+          qtd={flavoring.qtd}
+          onPress={() => handleGoListItem("flavoring")}
+          total={flavoring.total}
         />
      </Container>
     </>

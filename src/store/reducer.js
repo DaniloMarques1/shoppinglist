@@ -80,11 +80,11 @@ export default function reducer(state = initialState, action) {
     }
     case UPDATE_ITEM: {
       // TODO: Bug na nova qtd, caso antes tivesse 4 e eu atualizar para 3 ele vai soamr 4 + 3
-      console.log(action);
       const {category} = action;
       const itemTotal = (action.item.price * action.item.qtd);
       const nCategoryTotal = state[category].total + itemTotal;
       const nTotal = state.total + itemTotal;
+
       return {
         ...state, total: nTotal, 
         [category]: {
