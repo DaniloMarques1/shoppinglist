@@ -9,7 +9,6 @@ import HeaderList from '../../components/HeaderList';
 import {colors} from '../../utils/colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-//TODO: this is better for the eyes?
 function ListCategories({navigation}) {
   const {
     aliment,
@@ -42,8 +41,11 @@ function ListCategories({navigation}) {
       console.log(e);
     }
   }
+  function handleGoAddItem() {
+    navigation.navigate("AddItem");
+  }
 
-  function handleGoItem(category) {
+  function handleGoListItem(category) {
     navigation.navigate("ListItems", {category: category, name: Helper.translteTitle(category)});
   }
 
@@ -61,6 +63,9 @@ function ListCategories({navigation}) {
           <ButtonIcon onPress={() => saveList()}>
             <Icon color={colors.primaryBlue} name="save" size={23} />
           </ButtonIcon>
+          <ButtonIcon onPress={handleGoAddItem}>
+            <Icon color={colors.primaryBlue} name="add-shopping-cart" size={26} />
+          </ButtonIcon>
         </ButtonsContainer>
 
       </HeaderContainer>
@@ -68,43 +73,43 @@ function ListCategories({navigation}) {
         <HeaderList
           category="Alimento"
           qtd={aliment.qtd}
-          onPress={() => handleGoItem("aliment")}
+          onPress={() => handleGoListItem("aliment")}
           total={aliment.total}
         />
        <HeaderList
           category="Bebida"
           qtd={drink.qtd}
-          onPress={() => handleGoItem("drink")}
+          onPress={() => handleGoListItem("drink")}
           total={drink.total}
         />
         <HeaderList
           category="Limpeza"
           qtd={cleaning.qtd}
-          onPress={() => handleGoItem("cleaning")}
+          onPress={() => handleGoListItem("cleaning")}
           total={cleaning.total}
         />
         <HeaderList
           category="Carne"
           qtd={beef.qtd}
-          onPress={() => handleGoItem("beef")}
+          onPress={() => handleGoListItem("beef")}
           total={beef.total}
         />
         <HeaderList
           category="Tempero"
           qtd={flavoring.qtd}
-          onPress={() => handleGoItem("flavoring")}
+          onPress={() => handleGoListItem("flavoring")}
           total={flavoring.total}
         />
         <HeaderList
           category="Congelados"
           qtd={frozen.qtd}
-          onPress={() => handleGoItem("frozen")}
+          onPress={() => handleGoListItem("frozen")}
           total={frozen.total}
         />
         <HeaderList
           category="Sobremesa"
           qtd={dessert.qtd}
-          onPress={() => handleGoItem("dessert")}
+          onPress={() => handleGoListItem("dessert")}
           total={dessert.total}
         />
      </Container>

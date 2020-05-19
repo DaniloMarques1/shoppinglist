@@ -22,7 +22,7 @@ function ListItems({navigation, route}) {
   const formatTotal = `Total: ${Helper.formatCurrency(item.total)}`;
 
   function handleGoAddItem() {
-    navigation.navigate("AddItem");
+    navigation.navigate("AddItem", {category, fromListItem: true});
   }
 
   function handleEditItem(item) {

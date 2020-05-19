@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {
   Container,
@@ -18,12 +18,17 @@ import Select from '../../components/Select';
 import Input from '../../components/Input';
 import {colors} from '../../utils/colors';
 
-function AddItem({navigation}) {
+function AddItem({navigation, route}) {
   const dispatch = useDispatch();
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState("");
   const [itemQtd, setItemQtd] = useState("");
   const [category, setCategory] = useState("");
+  const fromListItem = route.params?.fromListItem;
+
+  useEffect(() => {
+    if (route.params?.category) setCategory(route.params.category)
+  }, []);
 
   function handleAddItem() {
     // TODO: Deal if we left some inputs blank
@@ -70,10 +75,14 @@ function AddItem({navigation}) {
           />
         </InputQtd>
       </InputLine>
-      <Label>Qual a categoria do item: </Label>
-      <PickerContainer>
-        <Select selectedValue={category} onChange={setCategory}  />
-      </PickerContainer>
+      {!fromListItem && (
+        <>
+          <Label>Qual a categoria do item: </Label>
+          <PickerContainer>
+            <Select selectedValue={category} onChange={setCategory}  />
+          </PickerContainer>
+        </>
+      )}
       <ButtonContainer>
         <Button 
           onPress={handleAddItem}

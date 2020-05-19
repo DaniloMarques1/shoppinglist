@@ -11,7 +11,8 @@ export const Container = styled.ScrollView`
 `;
 
 export const ButtonsContainer = styled.View`
-  align-items: center;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 export const ButtonIcon = styled.TouchableOpacity`
