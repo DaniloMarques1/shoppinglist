@@ -13,22 +13,22 @@ Separação dos itens por categorias, por exemplo quando adicionado um novo prod
 2. Sobremesa - Sorvete, massa de bolo
 3. Carne - Frango, Carne... 
 4. Bebida - Regrigerante, suco...
-5. Alimento - Açucar, Arroz...
+5. Alimento - Açucar, Arroz, macarrao
 6. Congelados - Pizza, Mortadela, queijo...
 7. Tempero - curry
 
 ## Estruturação do(s) item(s)
 
-Add a new item: {name: "Sabão", price: 2.34, qtd: 10}
-Add a new item: {name: "Galinha", price: 8, qtd: 15}
-Add a new item: {name: "Hamburguer", price: 2.34, qtd: 15}
+Add a new item: {name: "Sabão", price: 2.34, qtd: 10, purchased: false}
+Add a new item: {name: "Carne", price: 8, qtd: 15, purchased: false}
+Add a new item: {name: "Hamburguer", price: 2.34, qtd: 15, purchased: false}
 
 const items = {
   cleaning: [{name: "Sabão", price: 2.34, qtd: 10}],
   dessert: [],
   drink: [],
   aliment: [],
-  beef: [{name: "Galinha", price: 8, qtd: 15}, {name: "Hamburguer", price: 2.34, qtd: 15}],
+  beef: [{name: "Carne", price: 8, qtd: 15}, {name: "Hamburguer", price: 2.34, qtd: 15}],
   frozen: [],
   flavoring: []
 }

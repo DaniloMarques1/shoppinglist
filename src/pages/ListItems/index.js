@@ -7,17 +7,18 @@ import {
   HeaderContainer,
   List
 } from './styles';
+
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {colors} from '../../utils/colors';
 import Header from '../../components/Header';
 import ItemCard from '../../components/ItemCard';
 import Helper from '../../utils/helper';
 import {useSelector} from 'react-redux';
+import {FlatList} from 'react-native';
 
 function ListItems({navigation, route}) {
   const category = route.params?.category;
   const item = useSelector(store => store[category]);
-
   const formatQtd   = `Qtd: ${item.qtd}`;
   const formatTotal = `Total: ${Helper.formatCurrency(item.total)}`;
 
@@ -26,8 +27,6 @@ function ListItems({navigation, route}) {
   }
 
   function handleEditItem(item) {
-    console.log(item);
-    console.log(category);
     navigation.navigate("UpdateItem" , {category, item});
   }
 
