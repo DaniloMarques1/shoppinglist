@@ -2,7 +2,6 @@ import styled from 'styled-components/native';
 import {colors} from '../../utils/colors';
 
 export const Container = styled.View`
-  border: 1px solid ${(props) => props.purchased ? colors.primaryGreen : colors.primaryBlue};
   margin-bottom: 15px;
   background-color: ${(props) => props.purchased ? colors.primaryGreen : colors.primaryWhite};
   padding: 10px 12px;
