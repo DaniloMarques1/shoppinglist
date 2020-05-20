@@ -8,7 +8,7 @@ import {
   InputLine,
   InputPrice,
   ButtonContainer,
-  CheckBoxContainer
+  CheckBoxContainer,
 } from './styles';
 
 import {useDispatch} from 'react-redux';
@@ -100,6 +100,7 @@ function UpdateItem({navigation, route}) {
           />
         </InputQtd>
       </InputLine>
+      <Label>Seleciona a categoria </Label>
       <CheckBoxContainer>
         <CheckBox
           value={purchased}

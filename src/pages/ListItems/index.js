@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 import {
   Container,
@@ -14,7 +14,6 @@ import Header from '../../components/Header';
 import ItemCard from '../../components/ItemCard';
 import Helper from '../../utils/helper';
 import {useSelector} from 'react-redux';
-import {FlatList} from 'react-native';
 
 function ListItems({navigation, route}) {
   const category = route.params?.category;
@@ -23,11 +22,11 @@ function ListItems({navigation, route}) {
   const formatTotal = `Total: ${Helper.formatCurrency(item.total)}`;
 
   function handleGoAddItem() {
-    navigation.navigate("AddItem", {category, fromListItem: true});
+    navigation.navigate("AddItem", {category, fromListItem: true, item: Helper.translteTitle(category)});
   }
 
   function handleEditItem(item) {
-    navigation.navigate("UpdateItem" , {category, item});
+    navigation.navigate("UpdateItem" , {category, item, title: Helper.translteTitle(category)});
   }
 
   return (

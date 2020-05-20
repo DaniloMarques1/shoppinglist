@@ -35,7 +35,7 @@ export default function Route() {
         <Stack.Screen
           name="AddItem"
           component={AddItem}
-          options={{title:"Adicionar item"}}
+          options={({route}) => ({title: `Adicionar ${route.params?.item ? route.params.item : 'Item'}`})}
         />
         <Stack.Screen
           name="ListItems"
@@ -45,7 +45,7 @@ export default function Route() {
         <Stack.Screen
           name="UpdateItem"
           component={UpdateItem}
-          options={{title:"Atualizar item"}}
+          options={({route}) => ({title: `Atualizar ${route.params?.title ? route.params.title : 'Item'}`})}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -79,21 +79,15 @@ export default function reducer(state = initialState, action) {
       return {...state, [category]: { items: nItems, qtd: nQtd, total: nCategoryTotal}, total: nTotal}
     }
     case UPDATE_ITEM: {
-      // TODO: Bug na nova qtd, caso antes tivesse 4 e eu atualizar para 3 ele vai soamr 4 + 3
-      console.log(action.itemToUpdate);
-      console.log(action.item);
       // precisamos alterar o total da categoria e o total geral
       const {category, itemToUpdate, item} = action;
       const newItemTotal = itemToUpdate.price * itemToUpdate.qtd;
       const itemTotal = item.price * item.qtd;
       const categoryTotal = (state[category].total - itemTotal) + newItemTotal;
       const newTotal = (state.total - itemTotal) + newItemTotal;
-      console.log({newTotal, categoryTotal, itemTotal});
 
       // precisamos alterar a quantidade da categoria
       const categoryQtd = (state[category].qtd - item.qtd) + itemToUpdate.qtd;
-      console.log(categoryQtd);
-      console.log({categoryQtd});
       return {
         ...state,
         total: newTotal,
@@ -109,26 +103,6 @@ export default function reducer(state = initialState, action) {
           })
         }
       }
-
-      //const itemTotal = (action.item.price * action.item.qtd);
-      //const nCategoryTotal = state[category].total + itemTotal;
-      //const nTotal = state.total + itemTotal;
-
-      //return {
-      //  ...state, total: nTotal, 
-      //  [category]: {
-      //    items: state[category].items.map(item => {
-      //      if (item.id !== action.item.id) {
-      //        console.log("Item: ", item);
-      //        return item;
-      //      }
-      //      
-      //      return action.item;
-      //    }),
-      //    total: nCategoryTotal,
-      //    qtd: state[category].qtd + action.item.qtd
-      //  }
-      //}
     }
     default:
       return state;

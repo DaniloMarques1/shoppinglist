@@ -28,14 +28,9 @@ export const InputQtd = styled.View`
 
 export const Label = styled.Text`
   font-size: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   margin-top: 5px;
 `;
-
-//export const PickerContainer = styled.View`
-//  border: 2px solid ${colors.primaryBlue};
-//  border-radius: 10px;
-//`;
 
 export const CheckBoxContainer = styled.View`
   flex-direction: row;
