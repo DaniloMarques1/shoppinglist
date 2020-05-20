@@ -50,7 +50,7 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch(action.type) {
     case CREATE_LIST: {
-      return {...state, prevision: action.prevision};
+      return {...initialState, prevision: action.prevision};
     }
     case RECOVERY_LIST: {
       return action.state;
