@@ -11,12 +11,12 @@ import {
   IconButton,
   ContainerRow,
   QtdText,
-  PriceText
+  PriceText,
 } from './styles';
 
 function ItemCard({item, onPress}) {
   return (
-    <Container>
+    <Container purchased={item.purchased}>
       <ContainerRow>
         <RightView>
           <ItemText>{item.name}</ItemText>

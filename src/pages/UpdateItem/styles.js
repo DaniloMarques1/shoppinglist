@@ -32,9 +32,14 @@ export const Label = styled.Text`
   margin-top: 5px;
 `;
 
-export const PickerContainer = styled.View`
-  border: 2px solid ${colors.primaryBlue};
-  border-radius: 10px;
+//export const PickerContainer = styled.View`
+//  border: 2px solid ${colors.primaryBlue};
+//  border-radius: 10px;
+//`;
+
+export const CheckBoxContainer = styled.View`
+  flex-direction: row;
+  margin-top: 4px;
 `;
 
 export const ButtonContainer = styled.View`

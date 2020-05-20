@@ -35,7 +35,8 @@ function AddItem({navigation, route}) {
     const item = {
       name: itemName,
       price: parseFloat(itemPrice),
-      qtd: parseInt(itemQtd)
+      qtd: parseInt(itemQtd),
+      purchased: false
     }
 
     dispatch(addItem(item, category));

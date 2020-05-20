@@ -7,7 +7,8 @@ import {
   InputQtd,
   InputLine,
   InputPrice,
-  ButtonContainer
+  ButtonContainer,
+  CheckBoxContainer
 } from './styles';
 
 import {useDispatch} from 'react-redux';
@@ -16,6 +17,7 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import {colors} from '../../utils/colors';
 import {Alert} from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
 
 function UpdateItem({navigation, route}) {
   const dispatch = useDispatch();
@@ -24,6 +26,7 @@ function UpdateItem({navigation, route}) {
   const [itemName, setItemName] = useState(item.name);
   const [itemPrice, setItemPrice] = useState(String(item.price));
   const [itemQtd, setItemQtd] = useState(String(item.qtd));
+  const [purchased, setPurchased] = useState(item.purchased);
 
   function handleUpdateItem() {
     //TODO: Deal if we left some inputs blank
@@ -31,10 +34,11 @@ function UpdateItem({navigation, route}) {
       id: item.id,
       name: itemName,
       price: parseFloat(itemPrice),
-      qtd: parseInt(itemQtd)
+      qtd: parseInt(itemQtd),
+      purchased
     }
 
-    dispatch(updateItem(itemToUpdate, category));
+    dispatch(updateItem(itemToUpdate, category, item));
     navigation.goBack();
   }
 
@@ -65,7 +69,7 @@ function UpdateItem({navigation, route}) {
 
   return (
     <Container>
-      <Title> Informe is dados do novo item</Title>
+      <Title> Informe os dados do novo item</Title>
       <Label>Digite o nome do produto: </Label>
       <Input
         placeholder="Ex: café"
@@ -96,6 +100,13 @@ function UpdateItem({navigation, route}) {
           />
         </InputQtd>
       </InputLine>
+      <CheckBoxContainer>
+        <CheckBox
+          value={purchased}
+          onValueChange={setPurchased}
+         />
+        <Label>Comprado</Label>
+      </CheckBoxContainer>
       <ButtonContainer>
         <Button 
           onPress={handleUpdateItem}
