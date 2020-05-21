@@ -36,3 +36,9 @@ export const Label = styled.Text`
 export const ViewButton = styled.View`
   margin-top: 20px;
 `;
+
+export const ErrorText = styled.Text`
+  color: ${colors.primaryRed}; 
+  font-size: 15px;
+  margin-bottom: 5px;
+`;

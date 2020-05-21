@@ -11,7 +11,7 @@ import {colors} from './utils/colors'
 
 const Stack = createStackNavigator();
 
-const style = {
+const options = {
   headerStyle: {
     backgroundColor: colors.primaryBlue
   },
@@ -22,7 +22,7 @@ const style = {
 export default function Route() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={style}>
+      <Stack.Navigator screenOptions={options}>
         <Stack.Screen
           name="Home"
           component={Home}

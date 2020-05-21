@@ -28,6 +28,8 @@ function ListCategories({navigation}) {
     prevision
   } = useSelector(store => store);
 
+  console.log(total > prevision);
+
   async function saveList() {
     const jsonString = JSON.stringify({
       aliment,
@@ -64,6 +66,7 @@ function ListCategories({navigation}) {
         <Header
           rightText={formatPrevision}
           leftText={formatTotal}
+          redLeftText={total > prevision}
         />
         <ButtonsContainer>
           <ButtonIcon onPress={() => saveList()}>

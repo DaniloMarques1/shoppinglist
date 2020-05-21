@@ -1,6 +1,12 @@
 import React, {useState, useEffect} from 'react';
 
-import {Container, TextDescription, ModalContainer, Label, ViewButton} from './styles';
+import {Container,
+  TextDescription,
+  ModalContainer,
+  Label,
+  ViewButton,
+  ErrorText
+} from './styles';
 import {useDispatch} from 'react-redux';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -8,11 +14,12 @@ import {colors} from '../../utils/colors';
 import Modal from 'react-native-modal';
 import {createList, recoveryList} from '../../store/actions'
 import AsyncStorage from '@react-native-community/async-storage';
+import {Formik} from 'formik';
+import * as yup from 'yup';
 
 function Home({navigation}) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const [prevision, setPrevision] = useState("");
   const [recovery, setRecovery] = useState({});
 
   useEffect(() => {
@@ -30,17 +37,20 @@ function Home({navigation}) {
     getSavedShoppingList();
   }, []);
 
-  const handleNavigation = () => {
+  const handleNavigation = (values) => {
     setOpen(false);
-    dispatch(createList(prevision));
+    dispatch(createList(values.prevision));
     navigation.navigate("ListCategories");
   }
 
   const handleRecovery = async () => {
-    //TODO: Dispatch recovery
     dispatch(recoveryList(recovery));
     navigation.navigate("ListCategories");
   }
+
+  const validationSchema = yup.object().shape({
+    prevision: yup.number().typeError("Deve ser o valor apenas contendo números").required("Você deve fornecer uma previsão")
+  });
 
   return (
     <Container>
@@ -70,23 +80,34 @@ function Home({navigation}) {
         style={{alignItems: "center"}}
         useNativeDriver={true}
       >
-        <ModalContainer>
-          <Label>Qual sua previsão de gastos? </Label>
-          <Input
-            placeholder="400"
-            type="numeric"
-            value={prevision}
-            onChangeText={setPrevision}
-          />
-          <ViewButton>
-            <Button
-              color={colors.primaryBlue}
-              text="Criar"
-              icon="send"
-              onPress={handleNavigation}
-            />
-          </ViewButton>
-        </ModalContainer>
+          <Formik
+            initialValues={{
+              prevision: 400
+            }}
+            onSubmit={(values) => handleNavigation(values)}
+            validationSchema={validationSchema}
+          >
+            {(props) => (
+              <ModalContainer>
+                <Label>Qual sua previsão de gastos? </Label>
+                {props.errors.prevision && (<ErrorText>{props.errors.prevision}</ErrorText>)}
+                <Input
+                  placeholder="400"
+                  type="numeric"
+                  onChangeText={props.handleChange('prevision')}
+                  value={String(props.values.prevision)}
+                />
+                <ViewButton>
+                  <Button
+                    color={colors.primaryBlue}
+                    text="Criar"
+                    icon="send"
+                    onPress={props.handleSubmit}
+                  />
+                </ViewButton>
+              </ModalContainer>
+            )}
+          </Formik>
       </Modal>
     </Container>
   );
