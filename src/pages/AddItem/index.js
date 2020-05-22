@@ -9,8 +9,6 @@ import {
   InputPrice,
   PickerContainer,
   ButtonContainer,
-  ErrorView,
-  ErrorText
 } from './styles';
 
 import {useDispatch} from 'react-redux';
@@ -21,7 +19,7 @@ import Input from '../../components/Input';
 import {colors} from '../../utils/colors';
 import {Formik} from 'formik';
 import * as yup from 'yup';
-import {ToastAndroid} from 'react-native';
+import ErrorView from '../../components/ErrorView';
 
 function AddItem({navigation, route}) {
   const dispatch = useDispatch();
@@ -69,11 +67,7 @@ function AddItem({navigation, route}) {
             value={props.values.itemName}
             onChangeText={props.handleChange('itemName')}
           />
-          <ErrorView>
-          {props.errors.itemName && (
-              <ErrorText>{props.errors.itemName}</ErrorText>
-          )}
-          </ErrorView> 
+          <ErrorView error={props.errors.itemName} />
           <InputLine>
             <InputPrice>
               <Label>Digite o preço: </Label>
@@ -94,11 +88,7 @@ function AddItem({navigation, route}) {
                 value={String(props.values.itemQtd)}
                 onChangeText={props.handleChange('itemQtd')}
               />
-              <ErrorView>
-                {props.errors.itemQtd && (
-                    <ErrorText>{props.errors.itemQtd}</ErrorText>
-                )}
-              </ErrorView> 
+              <ErrorView error={props.errors.itemQtd} />
              </InputQtd>
           </InputLine>
           {!fromListItem && (
@@ -107,11 +97,7 @@ function AddItem({navigation, route}) {
               <PickerContainer>
                 <Select selectedValue={props.values.category} onChange={props.handleChange('category')}  />
               </PickerContainer>
-              <ErrorView>
-                {props.errors.category && (
-                    <ErrorText>{props.errors.category}</ErrorText>
-                )}
-              </ErrorView> 
+              <ErrorView error={props.errors.category} />
             </>
           )}
           <ButtonContainer>

@@ -5,8 +5,8 @@ import {Container,
   ModalContainer,
   Label,
   ViewButton,
-  ErrorText
 } from './styles';
+
 import {useDispatch} from 'react-redux';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -16,6 +16,7 @@ import {createList, recoveryList} from '../../store/actions'
 import AsyncStorage from '@react-native-community/async-storage';
 import {Formik} from 'formik';
 import * as yup from 'yup';
+import ErrorView from '../../components/ErrorView';
 
 function Home({navigation}) {
   const dispatch = useDispatch();
@@ -90,13 +91,13 @@ function Home({navigation}) {
             {(props) => (
               <ModalContainer>
                 <Label>Qual sua previsão de gastos? </Label>
-                {props.errors.prevision && (<ErrorText>{props.errors.prevision}</ErrorText>)}
                 <Input
                   placeholder="400"
                   type="numeric"
                   onChangeText={props.handleChange('prevision')}
                   value={String(props.values.prevision)}
                 />
+                <ErrorView error={props.errors.prevision} />
                 <ViewButton>
                   <Button
                     color={colors.primaryBlue}
