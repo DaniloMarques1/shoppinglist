@@ -31,7 +31,6 @@ function Home({navigation}) {
         setRecovery(json);
       } catch(e) {
         //TODO: Make an alert with the error
-        console.log(e)
       }
     }
 

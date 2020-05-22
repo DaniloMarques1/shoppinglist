@@ -23,7 +23,7 @@ function ListCategories({navigation}) {
     try {
       await AsyncStorage.setItem("shoppinglist", jsonString);
     }catch(e){
-      console.log(e);
+      //TODO: deal with errors
     }
   }
   function handleGoAddItem() {
