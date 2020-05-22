@@ -28,7 +28,7 @@ export const InputQtd = styled.View`
 
 export const Label = styled.Text`
   font-size: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   margin-top: 5px;
 `;
 
@@ -40,3 +40,13 @@ export const PickerContainer = styled.View`
 export const ButtonContainer = styled.View`
   margin-top: 40px;
 `;
+
+export const ErrorView = styled.View`
+  height: 8px;
+`;
+export const ErrorText = styled.Text`
+  color: ${colors.primaryRed};
+  font-size: 12px;
+  margin-left: 2px;
+`;
+

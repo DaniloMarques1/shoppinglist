@@ -8,7 +8,9 @@ import {
   InputLine,
   InputPrice,
   PickerContainer,
-  ButtonContainer
+  ButtonContainer,
+  ErrorView,
+  ErrorText
 } from './styles';
 
 import {useDispatch} from 'react-redux';
@@ -17,81 +19,112 @@ import Button from '../../components/Button';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
 import {colors} from '../../utils/colors';
+import {Formik} from 'formik';
+import * as yup from 'yup';
+import {ToastAndroid} from 'react-native';
 
 function AddItem({navigation, route}) {
   const dispatch = useDispatch();
-  const [itemName, setItemName] = useState("");
-  const [itemPrice, setItemPrice] = useState("");
-  const [itemQtd, setItemQtd] = useState("");
-  const [category, setCategory] = useState("");
   const fromListItem = route.params?.fromListItem;
 
-  useEffect(() => {
-    if (route.params?.category) setCategory(route.params.category)
-  }, []);
+  const validationSchema = yup.object().shape({
+    itemName: yup.string().required('Por favor dê um nome para o item'),
+    itemPrice: yup.number().typeError('O preço deve ser um número'),
+    itemQtd: yup.number().typeError('Número').required("Obrigatorio"),
+    category: yup.string().required()
+  });
 
-  function handleAddItem() {
+  function handleAddItem(values) {
     // TODO: Deal if we left some inputs blank
     const item = {
-      name: itemName,
-      price: parseFloat(itemPrice),
-      qtd: parseInt(itemQtd),
+      name: values.itemName,
+      price: values.itemPrice ? parseFloat(values.itemPrice) : 0,
+      qtd: parseInt(values.itemQtd),
       purchased: false
     }
 
-    dispatch(addItem(item, category));
+    dispatch(addItem(item, values.category));
     navigation.goBack();
-  }
-
+   }
   return (
     <Container>
       <Title>Informe os dados do novo item</Title>
-      <Label>Digite o nome do produto: </Label>
-      <Input
-        placeholder="Ex: café"
-        length={40}
-        type="default"
-        value={itemName}
-        onChangeText={setItemName}
-      />
-      <InputLine>
-        <InputPrice>
-          <Label>Digite o preço: </Label>
-          <Input
-            placeholder="Ex: 5.50"
-            length={40}
-            type="numeric"
-            value={itemPrice}
-            onChangeText={setItemPrice}
-          />
-        </InputPrice>
-        <InputQtd>
-          <Label>Quantidade: </Label>
-          <Input
-            placeholder="Ex: 2"
-            length={40}
-            type="numeric"
-            value={itemQtd}
-            onChangeText={setItemQtd}
-          />
-        </InputQtd>
-      </InputLine>
-      {!fromListItem && (
+      <Formik
+        initialValues={{
+          itemName: '',
+          itemPrice: 0,
+          itemQtd: 1,
+          category: route.params?.category || ''
+        }}
+        onSubmit={(values, {resetForm}) => handleAddItem(values, resetForm) }
+        validationSchema={validationSchema}
+      >
+      {(props) => (
         <>
-          <Label>Qual a categoria do item: </Label>
-          <PickerContainer>
-            <Select selectedValue={category} onChange={setCategory}  />
-          </PickerContainer>
+          <Label>Digite o nome do produto*: </Label>
+          <Input
+            placeholder="Ex: café"
+            length={40}
+            type="default"
+            value={props.values.itemName}
+            onChangeText={props.handleChange('itemName')}
+          />
+          <ErrorView>
+          {props.errors.itemName && (
+              <ErrorText>{props.errors.itemName}</ErrorText>
+          )}
+          </ErrorView> 
+          <InputLine>
+            <InputPrice>
+              <Label>Digite o preço: </Label>
+              <Input
+                placeholder="Ex: 5.50"
+                length={40}
+                type="numeric"
+                value={String(props.values.itemPrice)}
+                onChangeText={props.handleChange('itemPrice')}
+              />
+            </InputPrice>
+            <InputQtd>
+              <Label>Quantidade*: </Label>
+              <Input
+                placeholder="Ex: 2"
+                length={40}
+                type="numeric"
+                value={String(props.values.itemQtd)}
+                onChangeText={props.handleChange('itemQtd')}
+              />
+              <ErrorView>
+                {props.errors.itemQtd && (
+                    <ErrorText>{props.errors.itemQtd}</ErrorText>
+                )}
+              </ErrorView> 
+             </InputQtd>
+          </InputLine>
+          {!fromListItem && (
+            <>
+              <Label>Qual a categoria do item*: </Label>
+              <PickerContainer>
+                <Select selectedValue={props.values.category} onChange={props.handleChange('category')}  />
+              </PickerContainer>
+              <ErrorView>
+                {props.errors.category && (
+                    <ErrorText>{props.errors.category}</ErrorText>
+                )}
+              </ErrorView> 
+            </>
+          )}
+          <ButtonContainer>
+            <Button 
+              onPress={props.handleSubmit}
+              color={colors.primaryBlue}
+              icon="send"
+              text="Adicionar"
+            />
+          </ButtonContainer>
         </>
       )}
-      <ButtonContainer>
-        <Button 
-          onPress={handleAddItem}
-          color={colors.primaryBlue}
-          icon="send"
-          text="Adicionar"
-        />
-      </ButtonContainer>
+      </Formik>
     </Container>
   );
 }
