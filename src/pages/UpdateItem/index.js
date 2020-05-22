@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import {
   Container,
@@ -20,47 +20,41 @@ import {Alert} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import * as yup from 'yup';
 import {Formik} from 'formik';
+import ErrorView from '../../components/ErrorView';
 
 function UpdateItem({navigation, route}) {
   const dispatch = useDispatch();
-  const category = route.params?.category;
   const item = route.params?.item;
-  const [itemName, setItemName] = useState(item.name);
-  const [itemPrice, setItemPrice] = useState(String(item.price));
-  const [itemQtd, setItemQtd] = useState(String(item.qtd));
-  const [purchased, setPurchased] = useState(item.purchased);
 
-  function handleUpdateItem() {
-    //TODO: Deal if we left some inputs blank
+  function handleUpdateItem(values) {
     const itemToUpdate = {
       id: item.id,
-      name: itemName,
-      price: parseFloat(itemPrice),
-      qtd: parseInt(itemQtd),
-      purchased
+      name: values.itemName,
+      price: parseFloat(values.itemPrice) || 0,
+      qtd: parseInt(values.itemQtd),
+      purchased: values.purchased
     }
-
     dispatch(updateItem(itemToUpdate, category, item));
     navigation.goBack();
   }
 
-  function handleDeleteItem() {
+  function handleDeleteItem(values) {
     const itemToBeDeleted = {
       id: item.id,
-      name: itemName,
-      price: parseFloat(itemPrice),
-      qtd: parseInt(itemQtd)
+      name: values.itemName,
+      price: parseFloat(values.itemPrice),
+      qtd: parseInt(values.itemQtd)
     }
 
-    dispatch(removeItem(itemToBeDeleted, category));
+    dispatch(removeItem(itemToBeDeleted, values.category));
     navigation.goBack();
   }
 
-  function handleOpenAlert() {
+  function handleOpenAlert(values) {
     Alert.alert("", "Deseja mesmo apagar o item?", [
       {
         text: "Sim",
-        onPress:() => handleDeleteItem()
+        onPress:() => handleDeleteItem(values)
       },
       {
         text: "Não",
@@ -81,65 +75,76 @@ function UpdateItem({navigation, route}) {
       <Formik
         initialValues={{
           itemName: item.name,
-          itemPrice: item.price,
-          itemQtd: item.qtd,
-          category: route.params?.category || ''
+          itemPrice: item.price || 0,
+          itemQtd: item.qtd || 0,
+          category: route.params?.category || '',
+          purchased: item.purchased
         }}
+        validationSchema={validationSchema}
+        onSubmit={(values) => handleUpdateItem(values)}
       >
-        <Label>Digite o nome do produto: </Label>
-        <Input
-          placeholder="Ex: café"
-          length={40}
-          type="default"
-          value={itemName}
-          onChangeText={setItemName}
-        />
-        <InputLine>
-          <InputPrice>
-            <Label>Digite o preço: </Label>
+        {(props) => (
+          <>
+            <Label>Digite o nome do produto: </Label>
             <Input
-              placeholder="Ex: 5.50"
+              placeholder="Ex: café"
               length={40}
-              type="numeric"
-              value={itemPrice}
-              onChangeText={setItemPrice}
+              type="default"
+              value={props.values.itemName}
+              onChangeText={props.handleChange('itemName')}
             />
-          </InputPrice>
-          <InputQtd>
-            <Label>Quantidade: </Label>
-            <Input
-              placeholder="Ex: 2"
-              length={40}
-              type="numeric"
-              value={itemQtd}
-              onChangeText={setItemQtd}
-            />
-          </InputQtd>
-        </InputLine>
-        <Label>Seleciona a categoria </Label>
-        <CheckBoxContainer>
-          <CheckBox
-            value={purchased}
-            onValueChange={setPurchased}
-           />
-          <Label>Comprado</Label>
-        </CheckBoxContainer>
-        <ButtonContainer>
-          <Button 
-            onPress={handleUpdateItem}
-            color={colors.primaryBlue}
-            icon="edit"
-            text="Atualizar"
-          />
-        </ButtonContainer>
-        <ButtonContainer>
-          <Button 
-            onPress={handleOpenAlert}
-            color={colors.primaryRed}
-            icon="delete"
-            text="Apagar"
-          />
-        </ButtonContainer>
+            <ErrorView error={props.errors.itemName} />
+            <InputLine>
+              <InputPrice>
+                <Label>Digite o preço: </Label>
+                <Input
+                  placeholder="Ex: 5.50"
+                  length={40}
+                  type="numeric"
+                  value={String(props.values.itemPrice)}
+                  onChangeText={props.handleChange('itemPrice')}
+                />
+              </InputPrice>
+              <InputQtd>
+                <Label>Quantidade: </Label>
+                <Input
+                  placeholder="Ex: 2"
+                  length={40}
+                  type="numeric"
+                  value={String(props.values.itemQtd)}
+                  onChangeText={props.handleChange('itemQtd')}
+                />
+                <ErrorView error={props.errors.itemQtd} />
+              </InputQtd>
+            </InputLine>
+            <CheckBoxContainer>
+              <CheckBox
+                value={props.values.purchased}
+                onValueChange={() => props.values.purchased
+                  ? props.setFieldValue('purchased', false) 
+                  : props.setFieldValue('purchased', true)
+                }
+               />
+              <Label>Comprado</Label>
+            </CheckBoxContainer>
+            <ButtonContainer>
+              <Button 
+                onPress={props.handleSubmit}
+                color={colors.primaryBlue}
+                icon="edit"
+                text="Atualizar"
+              />
+            </ButtonContainer>
+            <ButtonContainer>
+              <Button 
+                onPress={() => handleOpenAlert(props.values)}
+                color={colors.primaryRed}
+                icon="delete"
+                text="Apagar"
+              />
+            </ButtonContainer>
+          </>
+        )}
       </Formik>
     </Container>
   );

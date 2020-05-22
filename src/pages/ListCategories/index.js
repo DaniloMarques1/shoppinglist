@@ -16,33 +16,10 @@ import {colors} from '../../utils/colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 function ListCategories({navigation}) {
-  const {
-    aliment,
-    beef,
-    frozen,
-    drink,
-    flavoring,
-    cleaning,
-    dessert,
-    total,
-    prevision
-  } = useSelector(store => store);
-
-  console.log(total > prevision);
+  const state = useSelector(store => store);
 
   async function saveList() {
-    const jsonString = JSON.stringify({
-      aliment,
-      beef,
-      frozen,
-      drink,
-      flavoring,
-      dessert,
-      cleaning,
-      total,
-      prevision
-    });
-
+    const jsonStrong = JSON.stringify(state);
     try {
       await AsyncStorage.setItem("shoppinglist", jsonString);
     }catch(e){
@@ -57,8 +34,8 @@ function ListCategories({navigation}) {
     navigation.navigate("ListItems", {category: category, name: Helper.translteTitle(category)});
   }
 
-  const formatPrevision = `Previsão: ${Helper.formatCurrency(prevision)}`;
-  const formatTotal = `Total: ${Helper.formatCurrency(total)}`;
+  const formatPrevision = `Previsão: ${Helper.formatCurrency(state.prevision)}`;
+  const formatTotal = `Total: ${Helper.formatCurrency(state.total)}`;
 
   return (
     <>
@@ -66,7 +43,7 @@ function ListCategories({navigation}) {
         <Header
           rightText={formatPrevision}
           leftText={formatTotal}
-          redLeftText={total > prevision}
+          redLeftText={state.total > state.prevision}
         />
         <ButtonsContainer>
           <ButtonIcon onPress={() => saveList()}>
@@ -81,45 +58,45 @@ function ListCategories({navigation}) {
       <Container>
         <HeaderList
           category="Alimento"
-          qtd={aliment.qtd}
+          qtd={state.aliment.qtd}
           onPress={() => handleGoListItem("aliment")}
-          total={aliment.total}
+          total={state.aliment.total}
         />
        <HeaderList
           category="Bebida"
-          qtd={drink.qtd}
+          qtd={state.drink.qtd}
           onPress={() => handleGoListItem("drink")}
-          total={drink.total}
+          total={state.drink.total}
         />
         <HeaderList
           category="Carne"
-          qtd={beef.qtd}
+          qtd={state.beef.qtd}
           onPress={() => handleGoListItem("beef")}
-          total={beef.total}
+          total={state.beef.total}
         />
         <HeaderList
           category="Congelados"
-          qtd={frozen.qtd}
+          qtd={state.frozen.qtd}
           onPress={() => handleGoListItem("frozen")}
-          total={frozen.total}
+          total={state.frozen.total}
         />
         <HeaderList
           category="Limpeza"
-          qtd={cleaning.qtd}
+          qtd={state.cleaning.qtd}
           onPress={() => handleGoListItem("cleaning")}
-          total={cleaning.total}
+          total={state.cleaning.total}
         />
         <HeaderList
           category="Sobremesa"
-          qtd={dessert.qtd}
+          qtd={state.dessert.qtd}
           onPress={() => handleGoListItem("dessert")}
-          total={dessert.total}
+          total={state.dessert.total}
         />
         <HeaderList
           category="Tempero"
-          qtd={flavoring.qtd}
+          qtd={state.flavoring.qtd}
           onPress={() => handleGoListItem("flavoring")}
-          total={flavoring.total}
+          total={state.flavoring.total}
         />
      </Container>
     </>
