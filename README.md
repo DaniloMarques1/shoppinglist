@@ -39,5 +39,9 @@ const items = {
 * [x] Funcionalidade de remover (esta bugada)
 * [x] Adicionar alguma forma de marcar um dos itens como "comprado"
 * [x] Funcionalidade de atualiazar (esta bugada)
-* [ ] Lidar com inputs inválidos ao adicionar um item, atualizar ou quando estiver criando a previsão
-* [ ] Atualizar os formularios para usar o react-hook-form para validação
+* [x] Lidar com inputs inválidos ao adicionar um item, atualizar ou quando estiver criando a previsão
+* [x] Atualizar os formularios para usar o react-hook-form para validação
+
+
+## Demonstração
+![demo gig](demo.gif)
