@@ -44,4 +44,4 @@ const items = {
 
 
 ## Demonstração
-<img src="demo.gif" width-"30" height="30" />
+<img src="demo.gif" width="320" height="500" />
