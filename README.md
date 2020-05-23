@@ -44,4 +44,4 @@ const items = {
 
 
 ## Demonstração
-![demo gig](demo.gif =100x)
+<img src="demo.gif" width-"30" height="30" />
