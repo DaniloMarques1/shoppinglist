@@ -7,11 +7,11 @@ export const Container = styled.View`
 
 export const HeaderRightText = styled.Text`
   font-size: 16px;
-  color: ${(props) => props.redLeftText ? colors.primaryRed : colors.primaryGray}
+  color: ${(props) => props.totalRedText ? colors.primaryRed : colors.primaryGray}
+  margin-left: auto;
 `;
 
 export const HeaderLeftText = styled.Text`
   font-size: 16px;
   color: ${colors.primaryGray};
-  margin-left: auto;
 `;

@@ -19,7 +19,7 @@ function ListCategories({navigation}) {
   const state = useSelector(store => store);
 
   async function saveList() {
-    const jsonStrong = JSON.stringify(state);
+    const jsonString = JSON.stringify(state);
     try {
       await AsyncStorage.setItem("shoppinglist", jsonString);
     }catch(e){
@@ -43,7 +43,7 @@ function ListCategories({navigation}) {
         <Header
           rightText={formatPrevision}
           leftText={formatTotal}
-          redLeftText={state.total > state.prevision}
+          totalRedText={state.total > state.prevision}
         />
         <ButtonsContainer>
           <ButtonIcon onPress={() => saveList()}>

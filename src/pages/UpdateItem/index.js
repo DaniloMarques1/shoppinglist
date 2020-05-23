@@ -34,7 +34,7 @@ function UpdateItem({navigation, route}) {
       qtd: parseInt(values.itemQtd),
       purchased: values.purchased
     }
-    dispatch(updateItem(itemToUpdate, category, item));
+    dispatch(updateItem(itemToUpdate, values.category, item));
     navigation.goBack();
   }
 
