@@ -35,12 +35,7 @@ const items = {
 
 ### TODO
 
-* [x] Botão de adicionar deve ficar na tela de categorias
-* [x] Funcionalidade de remover (esta bugada)
-* [x] Adicionar alguma forma de marcar um dos itens como "comprado"
-* [x] Funcionalidade de atualiazar (esta bugada)
-* [x] Lidar com inputs inválidos ao adicionar um item, atualizar ou quando estiver criando a previsão
-* [x] Atualizar os formularios para usar o react-hook-form para validação
+* [ ] Total de itens
 
 
 ## Demonstração
