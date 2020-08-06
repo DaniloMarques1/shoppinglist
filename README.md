@@ -36,7 +36,9 @@ const items = {
 ### TODO
 
 * [ ] Total de itens
-
+* [ ] Adicionar uma nova categoria "Outros"
+* [X] Usar as constantes de categorias na pagina ListCategory 
+* [X] Fazer dos itens da lista clicaveis para edicao (ao inves de só ser possivel clicar no icone de edição)
 
 ## Demonstração
 <img src="demo.gif" width="320" height="500" />

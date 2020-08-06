@@ -30,6 +30,9 @@ export const LeftView = styled.View`
 `;
 
 export const IconButton = styled.TouchableOpacity`
+`;
+
+export const IconView = styled.View`
   margin-left: auto;
 `;
 

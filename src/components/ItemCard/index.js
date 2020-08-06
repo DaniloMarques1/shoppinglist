@@ -12,19 +12,21 @@ import {
   ContainerRow,
   QtdText,
   PriceText,
+  IconView,
 } from './styles';
 
 function ItemCard({item, onPress}) {
   return (
+    <IconButton onPress={onPress}>
     <Container purchased={item.purchased}>
       <ContainerRow>
         <RightView>
           <ItemText>{item.name}</ItemText>
         </RightView>
         <LeftView>
-          <IconButton onPress={onPress}>
+          <IconView>
             <Icon name="edit" size={17} color={colors.primaryBlue} />
-          </IconButton>
+          </IconView>
         </LeftView>
       </ContainerRow>
       <ContainerRow>
@@ -40,6 +42,7 @@ function ItemCard({item, onPress}) {
         </RightView>
       </ContainerRow>
     </Container>
+    </IconButton>
   );
 }
 

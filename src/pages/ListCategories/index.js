@@ -9,6 +9,7 @@ import {
 
 import Header from '../../components/Header';
 import Helper from '../../utils/helper';
+import Category from '../../utils/category';
 import {useSelector} from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 import HeaderList from '../../components/HeaderList';
@@ -55,45 +56,46 @@ function ListCategories({navigation}) {
         </ButtonsContainer>
 
       </HeaderContainer>
+
       <Container>
         <HeaderList
-          category="Alimento"
+          category={Category.ALIMENT}
           qtd={state.aliment.qtd}
           onPress={() => handleGoListItem("aliment")}
           total={state.aliment.total}
         />
        <HeaderList
-          category="Bebida"
+          category={Category.DRINK}
           qtd={state.drink.qtd}
           onPress={() => handleGoListItem("drink")}
           total={state.drink.total}
         />
         <HeaderList
-          category="Carne"
+          category={Category.BEEF}
           qtd={state.beef.qtd}
           onPress={() => handleGoListItem("beef")}
           total={state.beef.total}
         />
         <HeaderList
-          category="Congelados"
+          category={Category.FROZEN}
           qtd={state.frozen.qtd}
           onPress={() => handleGoListItem("frozen")}
           total={state.frozen.total}
         />
         <HeaderList
-          category="Limpeza"
+          category={Category.CLEANING}
           qtd={state.cleaning.qtd}
           onPress={() => handleGoListItem("cleaning")}
           total={state.cleaning.total}
         />
         <HeaderList
-          category="Sobremesa"
+          category={Category.DESSERT}
           qtd={state.dessert.qtd}
           onPress={() => handleGoListItem("dessert")}
           total={state.dessert.total}
         />
         <HeaderList
-          category="Tempero"
+          category={Category.FLAVORING}
           qtd={state.flavoring.qtd}
           onPress={() => handleGoListItem("flavoring")}
           total={state.flavoring.total}
