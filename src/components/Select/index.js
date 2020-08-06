@@ -18,6 +18,7 @@ function Select({selectedValue, onChange}) {
         <Picker.Item label={Category.FROZEN} value="frozen" />
         <Picker.Item label={Category.DESSERT} value="dessert" />
         <Picker.Item label={Category.FLAVORING} value="flavoring" />
+        <Picker.Item label={Category.OTHERS} value="others" />
       </Picker>
     </>
   );

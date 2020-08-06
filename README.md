@@ -39,6 +39,7 @@ const items = {
 * [ ] Adicionar uma nova categoria "Outros"
 * [X] Usar as constantes de categorias na pagina ListCategory 
 * [X] Fazer dos itens da lista clicaveis para edicao (ao inves de só ser possivel clicar no icone de edição)
+* [X] Não permitir criar uma lista onde a previsão é 0
 
 ## Demonstração
 <img src="demo.gif" width="320" height="500" />

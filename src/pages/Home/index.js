@@ -49,7 +49,7 @@ function Home({navigation}) {
   }
 
   const validationSchema = yup.object().shape({
-    prevision: yup.number().typeError("Deve ser o valor apenas contendo números").required("Você deve fornecer uma previsão")
+    prevision: yup.number().typeError("Deve ser um valor apenas contendo números").required("Você deve fornecer uma previsão").min(1, "Sua lista deve ter uma previsão maior que 0")
   });
 
   return (

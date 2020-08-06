@@ -43,10 +43,14 @@ const initialState = {
     items: [],
     qtd: 0,
     total: 0
+  },
+  others: {
+    items: [],
+    qtd: 0,
+    total: 0
   }
 }
 
-// usado nos itens
 export default function reducer(state = initialState, action) {
   switch(action.type) {
     case CREATE_LIST: {

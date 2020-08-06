@@ -6,4 +6,5 @@ export default class Category {
   static FLAVORING = "Tempero";
   static FROZEN    = "Congelados";
   static DESSERT   = "Sobremesa";
+  static OTHERS    = "Outros";
 }

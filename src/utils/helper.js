@@ -30,6 +30,8 @@ export default class Helper {
         return Category.FLAVORING;
       case "beef":
         return Category.BEEf;
+      case "others":
+        return Category.OTHERS;
       default:
         return title;
     }

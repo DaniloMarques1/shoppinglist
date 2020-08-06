@@ -100,6 +100,12 @@ function ListCategories({navigation}) {
           onPress={() => handleGoListItem("flavoring")}
           total={state.flavoring.total}
         />
+        <HeaderList
+          category={Category.OTHERS}
+          qtd={state.others.qtd}
+          onPress={() => handleGoListItem("others")}
+          total={state.others.total}
+        />
      </Container>
     </>
   );
