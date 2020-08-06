@@ -26,7 +26,7 @@ function ListItems({navigation, route}) {
   }
 
   function handleEditItem(item) {
-    navigation.navigate("UpdateItem" , {category, item, title: Helper.translteTitle(category)});
+    navigation.navigate("UpdateItem" , {category, item, title: item.name});
   }
 
   return (

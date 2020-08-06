@@ -36,10 +36,11 @@ const items = {
 ### TODO
 
 * [ ] Total de itens
-* [ ] Adicionar uma nova categoria "Outros"
+* [X] Adicionar uma nova categoria "Outros"
 * [X] Usar as constantes de categorias na pagina ListCategory 
 * [X] Fazer dos itens da lista clicaveis para edicao (ao inves de só ser possivel clicar no icone de edição)
 * [X] Não permitir criar uma lista onde a previsão é 0
+* [X] Na pagina de atualizar item exibir no titulo qual item esta sendo atualizado
 
 ## Demonstração
 <img src="demo.gif" width="320" height="500" />

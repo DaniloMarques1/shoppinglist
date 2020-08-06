@@ -10,7 +10,7 @@ import Route from './routes';
 function App() {
   return (
     <>
-      <StatusBar backgroundColor={colors.primaryBlue}/>
+      <StatusBar backgroundColor={colors.secondaryBlue}/>
       <Provider store={store}>
         <Route />
       </Provider>
