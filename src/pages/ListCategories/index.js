@@ -4,7 +4,8 @@ import {
   HeaderContainer,
   Container,
   ButtonsContainer,
-  ButtonIcon
+  ButtonIcon,
+  Body
 } from './styles';
 
 import Header from '../../components/Header';
@@ -40,7 +41,8 @@ function ListCategories({navigation}) {
 
   return (
     <>
-     <HeaderContainer>
+      <Container>
+        <HeaderContainer>
         <Header
           rightText={formatPrevision}
           leftText={formatTotal}
@@ -56,8 +58,7 @@ function ListCategories({navigation}) {
         </ButtonsContainer>
 
       </HeaderContainer>
-
-      <Container>
+      <Body>
         <HeaderList
           category={Category.ALIMENT}
           qtd={state.aliment.qtd}
@@ -106,6 +107,7 @@ function ListCategories({navigation}) {
           onPress={() => handleGoListItem("others")}
           total={state.others.total}
         />
+      </Body>
      </Container>
     </>
   );
