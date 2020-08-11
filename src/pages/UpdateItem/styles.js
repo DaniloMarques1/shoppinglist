@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import {colors} from '../../utils/colors';
 
 export const Container = styled.View`
-  margin: 50px 20px 0 20px;
+  margin: 20px 20px 0 20px;
 `;
 
 export const Title = styled.Text`
@@ -38,5 +38,10 @@ export const CheckBoxContainer = styled.View`
 `;
 
 export const ButtonContainer = styled.View`
-  margin-top: 20px;
+  margin-top: 14px;
+`;
+
+export const PickerContainer = styled.View`
+  border: 2px solid ${colors.primaryBlue};
+  border-radius: 10px;
 `;
