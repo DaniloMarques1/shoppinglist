@@ -11,11 +11,11 @@ function Select({selectedValue, onChange}) {
         onValueChange={(itemValue) => onChange(itemValue)}
       >
         <Picker.Item label="SELECIONE UMA CATEGORIA" value="" />
-        <Picker.Item label={Category.BEEF} value="beef" />
-        <Picker.Item label={Category.CLEANING} value="cleaning" />
         <Picker.Item label={Category.ALIMENT} value="aliment" />
         <Picker.Item label={Category.DRINK} value="drink" />
+        <Picker.Item label={Category.BEEF} value="beef" />
         <Picker.Item label={Category.FROZEN} value="frozen" />
+        <Picker.Item label={Category.CLEANING} value="cleaning" />
         <Picker.Item label={Category.DESSERT} value="dessert" />
         <Picker.Item label={Category.FLAVORING} value="flavoring" />
         <Picker.Item label={Category.OTHERS} value="others" />
