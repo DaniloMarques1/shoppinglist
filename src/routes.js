@@ -30,7 +30,7 @@ export default function Route() {
         <Stack.Screen
           name="ListCategories"
           component={ListCategories}
-          options={{title:"Lista de categorias"}}
+          options={{title:"Lista de categorias", headerLeft: null}}
         />
         <Stack.Screen
           name="AddItem"
