@@ -15,7 +15,10 @@ import {useSelector} from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 import HeaderList from '../../components/HeaderList';
 import {colors} from '../../utils/colors';
+import Receipt  from '../../utils/Receipt';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Share from "react-native-share";
+import * as Print from 'expo-print';
 
 function ListCategories({navigation}) {
   const state = useSelector(store => store);
@@ -28,12 +31,25 @@ function ListCategories({navigation}) {
       //TODO: deal with errors
     }
   }
+
   function handleGoAddItem() {
     navigation.navigate("AddItem");
   }
 
   function handleGoListItem(category) {
     navigation.navigate("ListItems", {category: category, name: Helper.translteTitle(category)});
+  }
+
+  async function handleShare() {
+    const html = Receipt.generateHtml(state);
+    const {uri} = await Print.printToFileAsync({html});
+
+    Share.open({
+      url: uri,
+      title: "List"
+    })
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   }
 
   const formatPrevision = `Previsão: ${Helper.formatCurrency(state.prevision)}`;
@@ -55,6 +71,10 @@ function ListCategories({navigation}) {
           <ButtonIcon onPress={handleGoAddItem}>
             <Icon color={colors.primaryBlue} name="add-shopping-cart" size={26} />
           </ButtonIcon>
+          <ButtonIcon onPress={handleShare}>
+            <Icon color={colors.primaryBlue} name="share" size={26} />
+          </ButtonIcon>
+
         </ButtonsContainer>
 
       </HeaderContainer>
