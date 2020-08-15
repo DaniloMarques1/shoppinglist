@@ -21,7 +21,7 @@ import ErrorView from '../../components/ErrorView';
 function Home({navigation}) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const [recovery, setRecovery] = useState({});
+  const [recovery, setRecovery] = useState(null);
 
   useEffect(() => {
     async function getSavedShoppingList() {
