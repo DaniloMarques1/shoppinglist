@@ -37,7 +37,7 @@ function ItemCard({item, onPress}) {
         </LeftView>
         <RightView>
           <QtdText>
-            {item.qtd}
+            {Helper.formatQtd(item.qtd)}
           </QtdText>
         </RightView>
       </ContainerRow>

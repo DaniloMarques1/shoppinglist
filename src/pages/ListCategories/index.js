@@ -19,6 +19,7 @@ import Receipt  from '../../utils/Receipt';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Share from "react-native-share";
 import * as Print from 'expo-print';
+import {ToastAndroid} from 'react-native';
 
 function ListCategories({navigation}) {
   const state = useSelector(store => store);
@@ -27,8 +28,9 @@ function ListCategories({navigation}) {
     const jsonString = JSON.stringify(state);
     try {
       await AsyncStorage.setItem("shoppinglist", jsonString);
+      ToastAndroid.show("Salvo com sucesso", ToastAndroid.LONG)
     }catch(e){
-      //TODO: deal with errors
+      ToastAndroid.show("Erro ao tentar salvar", ToastAndroid.LONG)
     }
   }
 

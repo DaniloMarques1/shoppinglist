@@ -18,7 +18,7 @@ import {useSelector} from 'react-redux';
 function ListItems({navigation, route}) {
   const category = route.params?.category;
   const item = useSelector(store => store[category]);
-  const formatQtd   = `Qtd: ${item.qtd}`;
+  const formatQtd   = `Qtd: ${Helper.formatQtd(item.qtd)}`;
   const formatTotal = `Total: ${Helper.formatCurrency(item.total)}`;
 
   function handleGoAddItem() {

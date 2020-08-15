@@ -46,6 +46,10 @@ const items = {
 * [ ] Na tela de listagem de categoria, caso o back button seja pressionado, perguntar se o usuario deseja realmente sair e que caso saia sem ter salvo a lista corrente ela será perdida.
 * [X] Header que contem a previsao e o total ja gasto na tela de listagem das categorias, fazer com que ele tambem seja rolado para cima quando fizer o scroll.
 * [X] Verificar possibilidade de gerar um pdf com a lista corrente e poder compartilhar (whatszap, instagram...)
+* [X] Permitir apenas numero inteiro em quantidade na tela de adicao/atualizacao de item
+* [X] Adicionar 0 para QTD's abaixo de 10 (tanto no comprovante quanto na exibicao em categoria/itens)
+* [X] Adicionar previsao e total no comprovante.
+* [X] Feedback ao salvar
 
 ## Demonstração
 <img src="demo.gif" width="320" height="500" />

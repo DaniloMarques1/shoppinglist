@@ -9,7 +9,6 @@ export default class Receipt {
     let day = dt.getDate();
     let month = dt.getMonth() + 1;
     const year = dt.getFullYear();
-
     if (Number(day) < 10) day = `0${day}`;
     if (Number(month) < 10) month = `0${month}`;
 
@@ -58,6 +57,14 @@ export default class Receipt {
             text-align: left;
            }
         
+          tfoot td {
+            text-align: right;
+         }
+
+         tfoot td:first-child {
+          text-align: left;
+         }
+
             .list h3 {
               margin: 10px 0;
             }
@@ -75,13 +82,16 @@ export default class Receipt {
           </div>
 
           <section class="list">
+            <p>Previsão: ${Helper.formatCurrency(data.prevision)}</p>
+            <p>Total: ${Helper.formatCurrency(data.total)}</p>
             `
       const categories = ["aliment", "beef", "cleaning", "dessert", "drink", "flavoring", "frozen", "others"];
       categories.forEach(category => {
         let items = data[category];
+        const categoryTranslated = Helper.translteTitle(category);
         if (items.items.length > 0) {
           html += `
-            <h3>${Helper.translteTitle(category)}</h3>
+            <h3>${categoryTranslated}</h3>
               <table>
                 <thead>
                   <tr>
@@ -96,12 +106,20 @@ export default class Receipt {
             html += `
               <tr>
                 <td>${item.name}</td>
-                <td>${item.qtd}</td>
+                <td>${Helper.formatQtd(item.qtd)}</td>
                 <td>${Helper.formatCurrency(item.price)}</td>
               </tr>
           `;
           });
-          html += "</tbody></table>"
+          html += `
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>Total de ${categoryTranslated}</td>
+                <td colspan="2">${Helper.formatCurrency(items.total)}</td>
+              </tr>
+            </tfoot>
+            </table>`
         }
       });
 

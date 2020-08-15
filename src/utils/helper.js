@@ -12,6 +12,18 @@ export default class Helper {
     return `R$ ${roundedValue}`;
   }
 
+  /**
+   * Adiciona um 0 caso o qtd seja menor que 10
+   *@param - qtd: string | inteiro
+   * @return - retorna uma string
+   */
+  static formatQtd(qtd) {
+    if (Number(qtd) < 10 && Number(qtd) !== 0)
+      qtd = `0${qtd}`;
+
+    return qtd;
+  }
+
   static translteTitle(title) {
     switch(title) {
       case "frozen":

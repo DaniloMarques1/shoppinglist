@@ -28,7 +28,7 @@ function AddItem({navigation, route}) {
   const validationSchema = yup.object().shape({
     itemName: yup.string().required('Por favor dê um nome para o item'),
     itemPrice: yup.number().typeError('O preço deve ser um número'),
-    itemQtd: yup.number().typeError('Número').required("Obrigatorio"),
+    itemQtd: yup.number().typeError('Número').integer("números inteiros").required("Obrigatorio"),
     category: yup.string().required("Selecione a categria")
   });
 

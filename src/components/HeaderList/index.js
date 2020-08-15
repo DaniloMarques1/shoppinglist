@@ -20,7 +20,7 @@ function HeaderList({category, qtd, total, onPress}) {
         <ContainerRow>
           <QtdView>
             <QtdText>
-              QTD: {qtd}
+              QTD: {Helper.formatQtd(qtd)}
             </QtdText>
           </QtdView>
           <TotalView>
