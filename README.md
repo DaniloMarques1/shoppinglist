@@ -16,6 +16,7 @@ Separação dos itens por categorias, por exemplo quando adicionado um novo prod
 5. Alimento - Açucar, Arroz, macarrao
 6. Congelados - Pizza, Mortadela, queijo...
 7. Tempero - curry
+8. Outros - Fosforo
 
 ## Estruturação do(s) item(s)
 
@@ -44,6 +45,7 @@ const items = {
 * [X] Poder trocar a categoria do item ao editar
 * [ ] Na tela de listagem de categoria, caso o back button seja pressionado, perguntar se o usuario deseja realmente sair e que caso saia sem ter salvo a lista corrente ela será perdida.
 * [X] Header que contem a previsao e o total ja gasto na tela de listagem das categorias, fazer com que ele tambem seja rolado para cima quando fizer o scroll.
+* [X] Verificar possibilidade de gerar um pdf com a lista corrente e poder compartilhar (whatszap, instagram...)
 
 ## Demonstração
 <img src="demo.gif" width="320" height="500" />
