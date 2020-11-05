@@ -64,7 +64,13 @@ export default function reducer(state = initialState, action) {
       const itemTotal = (action.item.price * action.item.qtd);
       const nCategoryTotal = state[category].total + itemTotal;
       const nTotal = state.total + itemTotal;
-      action.item.id = state[category].items.length + 1;
+      const category_length = state[category].items.length;
+      if (category_length > 0) {
+        // if the category is not empty get the last items added id, and add 1 to it
+        action.item.id = state[category].items[category_length -1].id + 1;
+      } else {
+          action.item.id = 1;
+      }
       return {...state, total: nTotal, [category]: {
           items: [...state[category].items, action.item],
           total: nCategoryTotal,

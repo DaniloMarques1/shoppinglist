@@ -11,8 +11,7 @@ public class BasePackageList {
         new expo.modules.filesystem.FileSystemPackage(),
         new expo.modules.imageloader.ImageLoaderPackage(),
         new expo.modules.permissions.PermissionsPackage(),
-        new expo.modules.print.PrintPackage(),
-        new expo.modules.sharing.SharingPackage()
+        new expo.modules.print.PrintPackage()
     );
   }
 }
