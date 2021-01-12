@@ -30,7 +30,8 @@ export const Label = styled.Text`
   font-size: 17px;
   color: ${colors.primaryBlue};
   text-align: center;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 `;
 
 export const ViewButton = styled.View`

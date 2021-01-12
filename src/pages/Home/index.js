@@ -39,17 +39,19 @@ function Home({navigation}) {
 
   const handleNavigation = (values) => {
     setOpen(false);
-    dispatch(createList(values.prevision));
+    dispatch(createList(values.listName, values.prevision));
     navigation.navigate("ListCategories");
   }
 
-  const handleRecovery = async () => {
-    dispatch(recoveryList(recovery));
-    navigation.navigate("ListCategories");
+  function displaySavedLists() {
+    navigation.navigate("SavedLists");
   }
 
   const validationSchema = yup.object().shape({
-    prevision: yup.number().typeError("Deve ser um valor apenas contendo números").required("Você deve fornecer uma previsão").min(1, "Sua lista deve ter uma previsão maior que 0")
+    listName: yup.string().required("Você deve fornecer um nome para a lista"),
+    prevision: yup.number().typeError("Deve ser um valor apenas contendo números")
+                .required("Você deve fornecer uma previsão")
+                .min(1, "Sua lista deve ter uma previsão maior que 0")
   });
 
   return (
@@ -68,8 +70,8 @@ function Home({navigation}) {
         <ViewButton>
           <Button
             color={colors.primaryGray} 
-            text="Recuperar lista salva?"
-            onPress={handleRecovery}
+            text="Listas salvas"
+            onPress={displaySavedLists}
         />
       </ViewButton>
       )}
@@ -82,6 +84,7 @@ function Home({navigation}) {
       >
           <Formik
             initialValues={{
+              listName: "",
               prevision: 400
             }}
             onSubmit={(values) => handleNavigation(values)}
@@ -89,6 +92,15 @@ function Home({navigation}) {
           >
             {(props) => (
               <ModalContainer>
+                <Label>Qual nome da lista?</Label>
+                <Input
+                  placeholder="Nome da sua lista"
+                  type="default"
+                  onChangeText={props.handleChange('listName')}
+                  value={String(props.values.listName)}
+                />
+                <ErrorView error={props.errors.listName} />
+
                 <Label>Qual sua previsão de gastos? </Label>
                 <Input
                   placeholder="400"
@@ -97,6 +109,7 @@ function Home({navigation}) {
                   value={String(props.values.prevision)}
                 />
                 <ErrorView error={props.errors.prevision} />
+
                 <ViewButton>
                   <Button
                     color={colors.primaryBlue}

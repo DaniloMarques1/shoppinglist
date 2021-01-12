@@ -7,6 +7,7 @@ import {
 } from './actions';
 
 const initialState = {
+  listName: "",
   total: 0,
   prevision: 0,
   aliment: {
@@ -54,7 +55,7 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch(action.type) {
     case CREATE_LIST: {
-      return {...initialState, prevision: action.prevision};
+      return {...initialState, prevision: action.prevision, listName: action.listName};
     }
     case RECOVERY_LIST: {
       return action.state;

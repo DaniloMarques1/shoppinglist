@@ -25,9 +25,10 @@ function ListCategories({navigation}) {
   const state = useSelector(store => store);
 
   async function saveList() {
-    const jsonString = JSON.stringify(state);
     try {
-      await AsyncStorage.setItem("shoppinglist", jsonString);
+      const listName = state.listName;
+      const jsonString = JSON.stringify(state);
+      await AsyncStorage.setItem(listName, jsonString);
       ToastAndroid.show("Salvo com sucesso", ToastAndroid.LONG)
     }catch(e){
       ToastAndroid.show("Erro ao tentar salvar", ToastAndroid.LONG)
@@ -76,7 +77,6 @@ function ListCategories({navigation}) {
           <ButtonIcon onPress={handleShare}>
             <Icon color={colors.primaryBlue} name="share" size={26} />
           </ButtonIcon>
-
         </ButtonsContainer>
 
       </HeaderContainer>

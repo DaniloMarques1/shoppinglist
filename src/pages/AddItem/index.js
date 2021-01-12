@@ -33,7 +33,6 @@ function AddItem({navigation, route}) {
   });
 
   function handleAddItem(values) {
-    // TODO: Deal if we left some inputs blank
     const item = {
       name: values.itemName,
       price: values.itemPrice ? parseFloat(values.itemPrice) : 0,

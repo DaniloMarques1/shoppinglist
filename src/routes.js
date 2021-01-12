@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Home from './pages/Home';
+import SavedLists from './pages/SavedLists';
 import ListCategories from './pages/ListCategories';
 import AddItem from './pages/AddItem';
 import ListItems from './pages/ListItems';
@@ -46,6 +47,10 @@ export default function Route() {
           name="UpdateItem"
           component={UpdateItem}
           options={({route}) => ({title: `Atualizar ${route.params?.title ? route.params.title : 'Item'}`})}
+        />
+        <Stack.Screen
+          name="SavedLists"
+          component={SavedLists}
         />
       </Stack.Navigator>
     </NavigationContainer>

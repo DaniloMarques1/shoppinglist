@@ -16,7 +16,7 @@ será perguntado sua categoria, e então na lista será agrupado pela categoria
 3. [ ] Ao criar poder dar um nome a lista
 4. [ ] Exibir as listas salvas (ou seja, salvar utilizando como chave o nome da lista)
 5. [ ] possibilidade de editar o nome da lista criada
-6. [ ] adicionar o cifrao no input de digitar o preco (verificar se ficaria legal)
+5. [ ] Titulo do home exibir o nome da lista
 
 ## Demonstração
 <img src="demo.gif" width="320" height="500" />
