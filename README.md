@@ -11,10 +11,12 @@ será perguntado sua categoria, e então na lista será agrupado pela categoria
 
 ### TODO
 
-1. [ ] Resetar os valores da lista corrente (apenas os precos, quantidades continuam)
+1. [x] Resetar os valores de uma categoria (apenas os precos, quantidades continuam)
 2. [ ] Criar outro gif de demonstracao
 3. [ ] Ao criar poder dar um nome a lista
 4. [ ] Exibir as listas salvas (ou seja, salvar utilizando como chave o nome da lista)
+5. [ ] possibilidade de editar o nome da lista criada
+6. [ ] adicionar o cifrao no input de digitar o preco (verificar se ficaria legal)
 
 ## Demonstração
 <img src="demo.gif" width="320" height="500" />

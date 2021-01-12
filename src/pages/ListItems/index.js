@@ -13,13 +13,17 @@ import {colors} from '../../utils/colors';
 import Header from '../../components/Header';
 import ItemCard from '../../components/ItemCard';
 import Helper from '../../utils/helper';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {Alert, ToastAndroid} from 'react-native';
+
+import {updateItem} from '../../store/actions';
 
 function ListItems({navigation, route}) {
   const category = route.params?.category;
   const item = useSelector(store => store[category]);
   const formatQtd   = `Qtd: ${Helper.formatQtd(item.qtd)}`;
   const formatTotal = `Total: ${Helper.formatCurrency(item.total)}`;
+  const dispatch = useDispatch();
 
   function handleGoAddItem() {
     navigation.navigate("AddItem", {category, fromListItem: true, item: Helper.translteTitle(category)});
@@ -27,6 +31,31 @@ function ListItems({navigation, route}) {
 
   function handleEditItem(item) {
     navigation.navigate("UpdateItem" , {category, item, title: item.name});
+  }
+
+  function handleResetItemsPrice() {
+    for (const itemElement of item.items) {
+      const updatedItem = {
+        ...itemElement,
+        price: 0,
+      }
+      dispatch(updateItem(updatedItem, category, itemElement));
+
+      ToastAndroid.show(`Preços resetados com sucesso`, ToastAndroid.LONG);
+    }
+  }
+
+  function openAlert() {
+    Alert.alert("", "Deseja mesmo resetar a categoria?", [
+      {
+        text: "Sim",
+        onPress: () => handleResetItemsPrice()
+      },
+      {
+        text: "Não",
+        onPress: () => null
+      }
+    ])
   }
 
   return (
@@ -41,6 +70,12 @@ function ListItems({navigation, route}) {
         <ButtonIcon onPress={handleGoAddItem}>
             <Icon color={colors.primaryBlue} name="add-shopping-cart" size={26} />
         </ButtonIcon>
+        {item.total > 0 && (
+            <ButtonIcon onPress={openAlert}>
+              <Icon color={colors.primaryWarning} name="autorenew" size={26} />
+            </ButtonIcon>
+          )
+        }
       </ButtonsContainer>
       <List
         data={item.items}
