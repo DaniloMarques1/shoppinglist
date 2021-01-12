@@ -34,11 +34,11 @@ export function removeItem(item, category) {
   }
 }
 
-export function updateItem(itemToUpdate, category, item) {
+export function updateItem(updatedItem, category, item) {
   return {
     type: UPDATE_ITEM,
     category,
     item,
-    itemToUpdate
+    updatedItem
   }
 }

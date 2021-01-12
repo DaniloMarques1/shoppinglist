@@ -30,7 +30,7 @@ function UpdateItem({navigation, route}) {
   const category = route.params?.category;
 
   function handleUpdateItem(values) {
-    const itemToUpdate = {
+    const updatedItem = {
       id: item.id,
       name: values.itemName,
       price: parseFloat(values.itemPrice) || 0,
@@ -41,10 +41,10 @@ function UpdateItem({navigation, route}) {
     // se o valor vindo do values.category for diferente do valor passado pelo navigation
     // indica que estamos alterando a categoria do item
     if (values.category !== category) {
-      dispatch(removeItem(itemToUpdate, category));
-      dispatch(addItem(itemToUpdate, values.category));
+      dispatch(removeItem(updatedItem, category));
+      dispatch(addItem(updatedItem, values.category));
     } else {
-      dispatch(updateItem(itemToUpdate, values.category, item));
+      dispatch(updateItem(updatedItem, values.category, item));
     }
 
     navigation.goBack();
