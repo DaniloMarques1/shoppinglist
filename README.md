@@ -24,4 +24,3 @@ os dados da lista.
 8. [ ] Refatorar modal de criacao/edicao da lista (deixar reutilizavel, componente)
 
 ## Demonstração
-<img src="demo.gif" width="320" height="500" />
