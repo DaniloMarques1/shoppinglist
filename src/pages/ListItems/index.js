@@ -46,7 +46,7 @@ function ListItems({navigation, route}) {
   }
 
   function openAlert() {
-    Alert.alert("", "Deseja mesmo resetar a categoria?", [
+    Alert.alert("", "Deseja mesmo resetar os preços da categoria?", [
       {
         text: "Sim",
         onPress: () => handleResetItemsPrice()

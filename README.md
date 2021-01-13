@@ -9,6 +9,9 @@ e um total que será representado por quanto ja foi adicionado ao carrinho.
 Separação dos itens por categorias, por exemplo quando adicionado um novo produto,
 será perguntado sua categoria, e então na lista será agrupado pela categoria
 
+É possivel compartilhar a lista criada (midias sociais), vai ser gerado um pdf com
+os dados da lista.
+
 ### TODO
 
 1. [x] Resetar os valores de uma categoria (apenas os precos, quantidades continuam)
