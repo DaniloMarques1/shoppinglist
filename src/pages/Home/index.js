@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 
 import {Container,
   TextDescription,
@@ -12,8 +12,7 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import {colors} from '../../utils/colors';
 import Modal from 'react-native-modal';
-import {createList, recoveryList} from '../../store/actions'
-import AsyncStorage from '@react-native-community/async-storage';
+import {createList} from '../../store/actions'
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import ErrorView from '../../components/ErrorView';
@@ -21,26 +20,11 @@ import ErrorView from '../../components/ErrorView';
 function Home({navigation}) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const [recovery, setRecovery] = useState(null);
-
-  useEffect(() => {
-    async function getSavedShoppingList() {
-      try {
-        const jsonStr = await AsyncStorage.getItem("shoppinglist");
-        const json = JSON.parse(jsonStr);
-        setRecovery(json);
-      } catch(e) {
-        //TODO: Make an alert with the error
-      }
-    }
-
-    getSavedShoppingList();
-  }, []);
 
   const handleNavigation = (values) => {
     setOpen(false);
     dispatch(createList(values.listName, values.prevision));
-    navigation.navigate("ListCategories");
+    navigation.navigate("ListCategories", {listName: values.listName});
   }
 
   function displaySavedLists() {
@@ -66,15 +50,12 @@ function Home({navigation}) {
           text="Criar nova lista de compras"
         />
       </ViewButton>
-      {recovery && (
-        <ViewButton>
+      <ViewButton>
           <Button
             color={colors.primaryGray} 
             text="Listas salvas"
-            onPress={displaySavedLists}
-        />
+            onPress={displaySavedLists}/>
       </ViewButton>
-      )}
 
       <Modal
         isVisible={open}

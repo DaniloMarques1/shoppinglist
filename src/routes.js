@@ -29,9 +29,14 @@ export default function Route() {
           component={Home}
         />
         <Stack.Screen
+          name="SavedLists"
+          component={SavedLists}
+          options={{title: "Listas salvas"}}
+        />
+        <Stack.Screen
           name="ListCategories"
           component={ListCategories}
-          options={{title:"Lista de categorias", headerLeft: null}}
+          options={({route}) => ({title: `${route.params?.listName}`, headerLeft: null})}
         />
         <Stack.Screen
           name="AddItem"
@@ -47,10 +52,6 @@ export default function Route() {
           name="UpdateItem"
           component={UpdateItem}
           options={({route}) => ({title: `Atualizar ${route.params?.title ? route.params.title : 'Item'}`})}
-        />
-        <Stack.Screen
-          name="SavedLists"
-          component={SavedLists}
         />
       </Stack.Navigator>
     </NavigationContainer>
