@@ -6,9 +6,9 @@ export const List = styled.FlatList`
   margin-right: 3px;
 `;
 
-export const HeaderContainer = styled.View`
+export const Container = styled.View`
   width: 100%;
-  background-color: ${colors.primaryBlue}
+  background-color: ${colors.primaryWhite}
   border-radius: 6px;
   padding: 9px;
   elevation: 5;
@@ -16,15 +16,11 @@ export const HeaderContainer = styled.View`
 `;
 
 export const ListName = styled.Text`
-  color: ${colors.primaryWhite}
-`;
-
-export const ListPrevision = styled.Text`
-  color: ${colors.primaryWhite}
+  color: ${colors.primaryBlue}
 `;
 
 export const IconButton = styled.TouchableOpacity`
-  margin-right: 5px;
+ margin-right: 5px;
 `;
 
 export const IconView = styled.View`

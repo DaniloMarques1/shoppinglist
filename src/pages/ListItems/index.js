@@ -38,6 +38,7 @@ function ListItems({navigation, route}) {
       const updatedItem = {
         ...itemElement,
         price: 0,
+        purchased: false,
       }
       dispatch(updateItem(updatedItem, category, itemElement));
 

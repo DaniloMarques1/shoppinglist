@@ -2,9 +2,8 @@ import React, {useState, useEffect} from 'react';
 
 import {
   List,
-  HeaderContainer,
+  Container,
   ListName,
-  ListPrevision,
   IconView,
   IconButton,
   ModalContainer,
@@ -32,17 +31,17 @@ import * as yup from 'yup';
 function RenderList({item, onPress, handleRemove, handleEdit}) {
   return (
     <TouchableOpacity onPress={() => onPress(item)}>
-      <HeaderContainer>
+      <Container>
         <ListName>{item}</ListName>
         <IconView>
           <IconButton onPress={() => handleEdit(item)}>
-            <Icon name="edit" size={22} color={colors.primaryWhite} />
+            <Icon name="edit" size={22} color={colors.primaryBlue} />
           </IconButton>
           <IconButton onPress={() => handleRemove(item)}>
             <Icon name="delete" size={22} color={colors.primaryRed} />
           </IconButton>
         </IconView>
-      </HeaderContainer>
+      </Container>
     </TouchableOpacity>
   );
 }
@@ -95,7 +94,7 @@ function SavedLists({navigation}) {
   async function handleEdit(values) {
     try {
       if (values.listName !== list.listName) {
-        await AsyncStorage.removeItem(listName); // removing current name list in case the name changed
+        await AsyncStorage.removeItem(list.listName); // removing current name list in case the name changed
       }
 
       // update the lists the have the name that is shown
