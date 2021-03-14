@@ -7,9 +7,9 @@ export default class Helper {
    * @string type - ex: pt-BR, en-EN
    */
   static formatCurrency(value, type) {
-    //TODO: lazy solution because javascript sucks
     const roundedValue = parseFloat(value).toFixed(2);
-    return `R$ ${roundedValue}`;
+    if (!type) return `R$ ${roundedValue}`
+    else return `${type} ${roundedValue}`
   }
 
   /**
@@ -24,7 +24,7 @@ export default class Helper {
     return qtd;
   }
 
-  static translteTitle(title) {
+  static translateTitle(title) {
     switch(title) {
       case "frozen":
         return Category.FROZEN;

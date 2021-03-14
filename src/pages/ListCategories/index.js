@@ -40,7 +40,7 @@ function ListCategories({navigation}) {
   }
 
   function handleGoListItem(category) {
-    navigation.navigate("ListItems", {category: category, name: Helper.translteTitle(category)});
+    navigation.navigate("ListItems", {category: category, name: Helper.translateTitle(category)});
   }
 
   async function handleShare() {

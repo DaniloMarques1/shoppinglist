@@ -26,7 +26,7 @@ function ListItems({navigation, route}) {
   const dispatch = useDispatch();
 
   function handleGoAddItem() {
-    navigation.navigate("AddItem", {category, fromListItem: true, item: Helper.translteTitle(category)});
+    navigation.navigate("AddItem", {category, fromListItem: true, item: Helper.translateTitle(category)});
   }
 
   function handleEditItem(item) {

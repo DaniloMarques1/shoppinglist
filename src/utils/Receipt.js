@@ -12,7 +12,8 @@ export default class Receipt {
     if (Number(day) < 10) day = `0${day}`;
     if (Number(month) < 10) month = `0${month}`;
 
-    let html = `<html lang="pt-br">
+    let html = `
+      <html lang="pt-br">
         <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -88,7 +89,7 @@ export default class Receipt {
       const categories = ["aliment", "beef", "cleaning", "dessert", "drink", "flavoring", "frozen", "others"];
       categories.forEach(category => {
         let items = data[category];
-        const categoryTranslated = Helper.translteTitle(category);
+        const categoryTranslated = Helper.translateTitle(category);
         if (items.items.length > 0) {
           html += `
             <h3>${categoryTranslated}</h3>
@@ -111,12 +112,14 @@ export default class Receipt {
               </tr>
           `;
           });
+          //TODO adicionar a quantidade dos itens da categoria
           html += `
             </tbody>
             <tfoot>
               <tr>
                 <td>Total de ${categoryTranslated}</td>
-                <td colspan="2">${Helper.formatCurrency(items.total)}</td>
+                <td>${Helper.formatCurrency(items.total)}</td>
+                <td>${Helper.formatCurrency(items.qtd)}</td>
               </tr>
             </tfoot>
             </table>`

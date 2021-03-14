@@ -14,14 +14,13 @@ os dados da lista.
 
 ### TODO
 
-1. [x] Resetar os valores de uma categoria (apenas os precos, quantidades continuam)
-2. [ ] Criar outro gif de demonstracao
-3. [x] Ao criar poder dar um nome a lista
-4. [x] Exibir as listas salvas (ou seja, salvar utilizando como chave o nome da lista)
-5. [x] possibilidade de editar lista criada (nome e previsao)
-6. [x] possibilidade de remover lista criada
-7. [x] Titulo do home exibir o nome da lista
-8. [ ] Refatorar modal de criacao/edicao da lista (deixar reutilizavel, componente)
+1. [ ] Refatorar modal de criacao/edicao da lista (deixar reutilizavel, componente)
+2. [X] Ajustar nome do translateTitle no helper.js
+3. [ ] Analisar(refatorar) a criacao do html da receipt
+4. [ ] Adicionar o nome da lista no titulo do receipt
+5. [ ] Adicionar informacao de quantidade de itens por categoria junto com total
+5. [ ] Refatorar o reset de precos (bugando o toast)
 
 ## Demonstração
+
 <img src="demo.gif" width="320" height="500" />
