@@ -41,9 +41,9 @@ function ListItems({navigation, route}) {
         purchased: false,
       }
       dispatch(updateItem(updatedItem, category, itemElement));
-
-      ToastAndroid.show(`Preços resetados com sucesso`, ToastAndroid.LONG);
     }
+
+    ToastAndroid.show('Preços resetados com sucesso', ToastAndroid.SHORT);
   }
 
   function openAlert() {

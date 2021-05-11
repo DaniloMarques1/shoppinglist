@@ -92,10 +92,10 @@ export default function reducer(state = initialState, action) {
     case UPDATE_ITEM: {
       // precisamos alterar o total da categoria e o total geral
       const {category, updatedItem, item} = action;
-      console.log(updatedItem);
-      console.log(item);
+
       const newItemTotal = updatedItem.price * updatedItem.qtd;
       const itemTotal = item.price * item.qtd;
+
       const categoryTotal = (state[category].total - itemTotal) + newItemTotal;
       const newTotal = (state.total - itemTotal) + newItemTotal;
 

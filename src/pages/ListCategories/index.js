@@ -29,9 +29,9 @@ function ListCategories({navigation}) {
       const listName = state.listName;
       const jsonString = JSON.stringify(state);
       await AsyncStorage.setItem(listName, jsonString);
-      ToastAndroid.show("Salvo com sucesso", ToastAndroid.LONG)
+      ToastAndroid.show("Salvo com sucesso", ToastAndroid.SHORT)
     }catch(e){
-      ToastAndroid.show("Erro ao tentar salvar", ToastAndroid.LONG)
+      ToastAndroid.show("Erro ao tentar salvar", ToastAndroid.SHORT)
     }
   }
 
@@ -43,6 +43,7 @@ function ListCategories({navigation}) {
     navigation.navigate("ListItems", {category: category, name: Helper.translateTitle(category)});
   }
 
+  // TODO chamar metodo nativo
   async function handleShare() {
     const html = Receipt.generateHtml(state);
     const {uri} = await Print.printToFileAsync({html});
