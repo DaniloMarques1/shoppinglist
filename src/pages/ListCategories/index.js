@@ -19,7 +19,9 @@ import Receipt  from '../../utils/Receipt';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Share from "react-native-share";
 import * as Print from 'expo-print';
-import {ToastAndroid} from 'react-native';
+import {ToastAndroid, NativeModules} from 'react-native';
+
+const { ReportModule } = NativeModules;
 
 function ListCategories({navigation}) {
   const state = useSelector(store => store);
@@ -45,6 +47,11 @@ function ListCategories({navigation}) {
 
   // TODO chamar metodo nativo
   async function handleShare() {
+    console.log("chamando native module");
+    ReportModule.printReport(JSON.stringify(state));
+
+    /*
+    // state
     const html = Receipt.generateHtml(state);
     const {uri} = await Print.printToFileAsync({html});
 
@@ -54,6 +61,7 @@ function ListCategories({navigation}) {
     })
       .then(res => console.log(res))
       .catch(err => console.log(err));
+      */
   }
 
   const formatPrevision = `Previsão: ${Helper.formatCurrency(state.prevision)}`;
