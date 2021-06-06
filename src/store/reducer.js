@@ -6,6 +6,8 @@ import {
   UPDATE_ITEM 
 } from './actions';
 
+import { removeItem } from './removeItem'
+
 const initialState = {
   listName: "",
   total: 0,
@@ -80,14 +82,7 @@ export default function reducer(state = initialState, action) {
       };
     }
     case REMOVE_ITEM: {
-      const {category} = action;
-      const itemTotal = (action.item.price * action.item.qtd);
-      const nCategoryTotal = state[category].total - itemTotal;
-      const nTotal = state.total - itemTotal;
-      const nQtd = state[category].qtd - action.item.qtd;
-      const nItems = state[category].items.filter(item => item.id !== action.item.id);
-
-      return {...state, [category]: { items: nItems, qtd: nQtd, total: nCategoryTotal}, total: nTotal}
+      return removeItem(state, action.category, action.item);
     }
     case UPDATE_ITEM: {
       // precisamos alterar o total da categoria e o total geral
