@@ -8,6 +8,7 @@ import {
 
 import { removeItem } from './removeItem'
 import { addItem } from './addItem';
+import { updateItem } from './updateItem';
 
 const initialState = {
   listName: "",
@@ -70,32 +71,7 @@ export default function reducer(state = initialState, action) {
       return removeItem(state, action.category, action.item);
     }
     case UPDATE_ITEM: {
-      // precisamos alterar o total da categoria e o total geral
-      const {category, updatedItem, item} = action;
-
-      const newItemTotal = updatedItem.price * updatedItem.qtd;
-      const itemTotal = item.price * item.qtd;
-
-      const categoryTotal = (state[category].total - itemTotal) + newItemTotal;
-      const newTotal = (state.total - itemTotal) + newItemTotal;
-
-      // precisamos alterar a quantidade da categoria
-      const categoryQtd = (state[category].qtd - item.qtd) + updatedItem.qtd;
-      return {
-        ...state,
-        total: newTotal,
-        [category]: {
-          total: categoryTotal,
-          qtd: categoryQtd,
-          items: state[category].items.map(element => {
-            if (element.id !== updatedItem.id) {
-              return element;
-            }
-
-            return updatedItem
-          })
-        }
-      }
+      return updateItem(state, action.category, action.oldItem, action.updatedItem);
     }
     default:
       return state;

@@ -35,11 +35,11 @@ export function removeItem(item, category) {
   }
 }
 
-export function updateItem(updatedItem, category, item) {
+export function updateItem(updatedItem, category, oldItem) {
   return {
     type: UPDATE_ITEM,
     category,
-    item,
+    oldItem,
     updatedItem
   }
 }
