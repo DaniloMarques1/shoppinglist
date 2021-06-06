@@ -20,14 +20,14 @@ function getNewStateTotal(stateTotal, itemTotal) {
   return stateTotal + itemTotal;
 }
 
+function getNewCategoryQtd(categoryQtd, itemQtd) {
+  return categoryQtd + itemQtd;
+}
+
 function getItemId(state, category) {
   const categoryItems = state[category].items;
   if (!categoryItems.length) return 1;
 
   const lastItem = categoryItems[categoryItems.length -1];
   return lastItem.id + 1;
-}
-
-function getNewCategoryQtd(categoryQtd, itemQtd) {
-  return categoryQtd, itemQtd;
 }
