@@ -1,5 +1,6 @@
 package com.shoppinglist;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.facebook.react.bridge.NativeModule;
@@ -24,6 +25,8 @@ public class ReportModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void printReport(String reportContent) {
         Log.d("REPORT_MODULE", reportContent);
-        // TODO chamar metodo pra gerar bitmap
+        Intent intent = new Intent(getReactApplicationContext(), ReportActivity.class);
+        intent.putExtra("report", reportContent);
+        getReactApplicationContext().startActivity(intent);
     }
 }
